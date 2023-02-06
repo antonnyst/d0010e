@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import labb3.GlobalaKonstanter;
 import labb3.modell.Gång;
 import labb3.modell.Nivå;
 import labb3.modell.Rum;
@@ -47,12 +48,53 @@ public class Målarduk extends JPanel {
 	}
 
 	private Punkt baspunkt(Rum ettRum, Väderstreck enRiktning) {
-		return null; /* endast här för att Eclipse inte ska klaga */
+		int x;
+		int y;
+		switch(enRiktning) {
+			case NORR:
+				x = ettRum.öv().x() + ettRum.bredd() / 2;
+				y = ettRum.öv().y() + GlobalaKonstanter.VÄGGTJOCKLEK;
+				return new Punkt(x, y); 
+			case ÖSTER:
+				x = ettRum.öv().x() + ettRum.bredd() - GlobalaKonstanter.VÄGGTJOCKLEK;
+				y = ettRum.öv().y() + ettRum.höjd() / 2;
+				return new Punkt(x, y);
+			case SÖDER:
+				x = ettRum.öv().x() + ettRum.bredd() / 2;
+				y = ettRum.öv().y() + ettRum.höjd() - GlobalaKonstanter.VÄGGTJOCKLEK;
+				return new Punkt(x, y); 
+			case VÄSTER:
+				x = ettRum.öv().x() + GlobalaKonstanter.VÄGGTJOCKLEK;
+				y = ettRum.öv().y() + ettRum.höjd() / 2;
+				return new Punkt(x, y); 
+			default:
+				return null;
+		}
 	}
 
 	private Punkt pivotpunkt(Rum ettRum, Väderstreck enRiktning) {
-		return null; /* endast här för att Eclipse inte ska klaga */
-	}
+		int x;
+		int y;
+		switch(enRiktning) {
+			case NORR:
+				x = ettRum.öv().x() + ettRum.bredd() / 2;
+				y = ettRum.öv().y() - GlobalaKonstanter.HALV_VÄGGTJOCKLEK;
+				return new Punkt(x, y); 
+			case ÖSTER:
+				x = ettRum.öv().x() + ettRum.bredd() + GlobalaKonstanter.HALV_VÄGGTJOCKLEK;
+				y = ettRum.öv().y() + ettRum.höjd() / 2;
+				return new Punkt(x, y);
+			case SÖDER:
+				x = ettRum.öv().x() + ettRum.bredd() / 2;
+				y = ettRum.öv().y() + ettRum.höjd() + GlobalaKonstanter.HALV_VÄGGTJOCKLEK;
+				return new Punkt(x, y); 
+			case VÄSTER:
+				x = ettRum.öv().x() - GlobalaKonstanter.HALV_VÄGGTJOCKLEK;
+				y = ettRum.öv().y() + ettRum.höjd() / 2;
+				return new Punkt(x, y); 
+			default:
+				return null;
+		}
 
 	private void ritaGång(Graphics g, Gång enGång) {
 
