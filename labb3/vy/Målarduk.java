@@ -2,6 +2,8 @@ package labb3.vy;
 
 import java.awt.Graphics;
 
+import javax.swing.JPanel;
+
 import labb3.modell.Gång;
 import labb3.modell.Nivå;
 import labb3.modell.Rum;
@@ -9,12 +11,15 @@ import labb3.modell.Väderstreck;
 import labb3.verktyg.Punkt;
 
 // TODO: Ändra nästa rad så att en Målarduk "är-en" JPanel. 
-public class Målarduk {
+
+public class Målarduk extends JPanel {
 
 	private final Nivå enNivå;
 
 	public Målarduk(Nivå enNivå) {
 		this.enNivå = enNivå;
+		this.setBackground(MARKFÄRG);
+
 		// TODO: Sätt bakgrundsfärgen på this till MARKFÄRG.
 		// TODO: Anropa metoden setFocusable på this och med argumentet true.
 		// Detta behövs för att lyssnaren i programmet ska reagera.
