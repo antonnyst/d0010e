@@ -28,12 +28,9 @@ public class Nivå extends Observable {
 
 		// TODO: Kontrollera att inga rum överlappar varandra. Om det ändå är
 		// fallet, kasta undantag med lämpligt felmeddelande.
-		for (int i = 0; i < rum.size(); i++) {
-			for (int j = 0; i < rum.size(); j++) {
-				if (i == j) {
-					continue;
-				}
-				if (checkOverlap(rum.get(i), rum.get(j))) {
+		for (int i = 0; i < this.rum.size()-1; i++) {
+			for (int j = i+1; j < this.rum.size(); j++) {
+				if (checkOverlap(this.rum.get(i), this.rum.get(j))) {
 					throw new RuntimeException("Rum överlappar");
 				}
 			}
