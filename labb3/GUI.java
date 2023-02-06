@@ -22,7 +22,7 @@ public class GUI extends JFrame implements Observer {
 	public GUI(Nivå enNivå) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// TODO: Anropa metoden setDefaultCloseOperation med konstanten
-		// JFrame.EXIT_ON_CLOSE.
+		
 		
 		
 		enNivå.addObserver(this);
@@ -54,7 +54,7 @@ public class GUI extends JFrame implements Observer {
 		// göra setVisible(true) och pack().
 		setContentPane(målarduk);
 		this.pack();
-		målarduk.setVisible(true);
+		this.setVisible(true);
 	}
 
 	// TODO: Metoden update ska vara den i gränssnittet Observer. Lägg därför

@@ -19,8 +19,8 @@ public class Målarduk extends JPanel {
 
 	public Målarduk(Nivå enNivå) {
 		this.enNivå = enNivå;
-		this.setBackground(MARKFÄRG);
-
+		this.setBackground(GlobalaKonstanter.MARKFÄRG);
+		this.setFocusable(true);
 		// TODO: Sätt bakgrundsfärgen på this till MARKFÄRG.
 		// TODO: Anropa metoden setFocusable på this och med argumentet true.
 		// Detta behövs för att lyssnaren i programmet ska reagera.
@@ -28,6 +28,7 @@ public class Målarduk extends JPanel {
 
 	// TODO: Lätt till @Override på metoden nedan.
 	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		// TODO Lägg till ett anrop till paintComponent i omedelbara
 		// överklassen (JPanel). Skicka med g som argument.
 
@@ -95,6 +96,7 @@ public class Målarduk extends JPanel {
 			default:
 				return null;
 		}
+	}
 
 	private void ritaGång(Graphics g, Gång enGång) {
 
