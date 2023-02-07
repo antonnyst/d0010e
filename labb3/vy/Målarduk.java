@@ -43,7 +43,8 @@ public class Målarduk extends JPanel {
 		for(int i = 0; i < allaRum.size(); i++){
 			ritaRum(g, allaRum.get(i));
 		}
-		
+		ritaMarkörFörVarAnvändarenÄr(g);
+
 		
 
 		// TODO: Lägg till kod som ritar ut en grafisk vy av enNivå.
@@ -121,6 +122,8 @@ public class Målarduk extends JPanel {
 	}
 
 	private void ritaMarkörFörVarAnvändarenÄr(Graphics g) {
-
+		Punkt userPosition= new Punkt(enNivå.nuvarandeRum().öv().x()+enNivå.nuvarandeRum().bredd()/2,
+		 enNivå.nuvarandeRum().öv().y()+enNivå.nuvarandeRum().höjd()/2);
+		Grafik.fillCircle(g, userPosition, GlobalaKonstanter.ANVÄNDARRADIE, GlobalaKonstanter.ANVÄNDARFÄRG);
 	}
 }
