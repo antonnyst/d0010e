@@ -51,4 +51,8 @@ public class Huvudprogram {
 		// GUI-instansen men det är är inte nödvändigt.
 	}
 
+	public static void nyaRum(ArrayList<Rum> rum) {
+
+	}
+
 }
