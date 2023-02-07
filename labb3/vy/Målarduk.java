@@ -1,5 +1,6 @@
 package labb3.vy;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -9,6 +10,7 @@ import labb3.modell.Gång;
 import labb3.modell.Nivå;
 import labb3.modell.Rum;
 import labb3.modell.Väderstreck;
+import labb3.verktyg.Grafik;
 import labb3.verktyg.Punkt;
 
 // TODO: Ändra nästa rad så att en Målarduk "är-en" JPanel. 
@@ -27,10 +29,20 @@ public class Målarduk extends JPanel {
 	}
 
 	// TODO: Lätt till @Override på metoden nedan.
+	
+	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// TODO Lägg till ett anrop till paintComponent i omedelbara
 		// överklassen (JPanel). Skicka med g som argument.
+		
+		
+		//g.drawRect(300, 200, GlobalaKonstanter.VÄGGTJOCKLEK, GlobalaKonstanter.VÄGGTJOCKLEK);
+		Rum[] allaRum = enNivå.rum();
+		for(int i = 0; i < allaRum.length; i++){
+			ritaRum(g, allaRum[i]);
+		}
+		
 
 		// TODO: Lägg till kod som ritar ut en grafisk vy av enNivå.
 		//
@@ -41,7 +53,8 @@ public class Målarduk extends JPanel {
 	}
 
 	private void ritaRum(Graphics g, Rum ettRum) {
-
+		g.setColor(Color.RED);
+		g.fillRect(ettRum.öv().x(), ettRum.öv().y(), ettRum.bredd(), ettRum.höjd());
 	}
 
 	private void ritaGångarFrånRum(Graphics g, Rum ettRum) {
