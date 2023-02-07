@@ -1,6 +1,7 @@
 package labb3;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -8,6 +9,7 @@ import javax.swing.JFrame;
 
 import labb3.kontroll.Tangentbordslyssnare;
 import labb3.modell.Nivå;
+import labb3.modell.Rum;
 import labb3.vy.Målarduk;
 
 
@@ -32,15 +34,33 @@ public class GUI extends JFrame implements Observer {
 		// TODO: Tilldela tillståndsvariabeln målarduk en instans av klassen
 		// Målarduk.
 
+
+		int maxX = 0;
+		int maxY = 0;
+		
+		ArrayList<Rum> allaRum = enNivå.rum();
+		for (int i = 0; i < allaRum.size(); i++) {
+			Rum ettRum = allaRum.get(i);
+			if (ettRum.öv().x()+ettRum.bredd() > maxX) {
+				maxX = ettRum.öv().x()+ettRum.bredd();
+			}
+			if (ettRum.öv().y()+ettRum.höjd() > maxY) {
+				maxY = ettRum.öv().y()+ettRum.höjd();
+			}
+		}
+
 		
 			
-		målarduk.setPreferredSize(new Dimension(640, 400));
+		målarduk.setPreferredSize(new Dimension(maxX + GlobalaKonstanter.DUBBEL_VÄGGTJOCKLEK, maxY + GlobalaKonstanter.DUBBEL_VÄGGTJOCKLEK));
 
 		// TODO: Använd setPreferredSize på målarduk och sätt dess dimensioner
 		// så alla rum faktiskt syns. Ett tips är att loopa igenom nivåns alla
 		// rum och räkna ut vilken bredd och höjd målarduken måste ha(!)
 		// Annars går det också att dra till med en storlek och sen bara
 		// använda rum som säkert kan visas på målarduken.
+		
+
+
 
 		// TODO: Lägg till en KeyListener på målardiken, dvs en instans av
 		// typen Tangentbordslyssnare. Notera att lyssnaren vill ha enNivå

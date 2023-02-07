@@ -60,7 +60,7 @@ public class Rum {
 	//
 	// returnerar den gång som leder från ett rum i riktning väderstreck. Om
 	// sådan gång saknas ska ett undantag kastas med lämpligt felmeddelande.
-	Gång gångenÅt(Väderstreck väderstreck) throws Exception {
+	public Gång gångenÅt(Väderstreck väderstreck) throws Exception {
 		if (!finnsUtgångÅt(väderstreck)) {
 			throw new Exception("Ingen gång finns åt specificerat väderstreck");
 		}
