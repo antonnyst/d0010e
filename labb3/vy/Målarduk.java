@@ -42,11 +42,10 @@ public class Målarduk extends JPanel {
 		ArrayList<Rum> allaRum = enNivå.rum();
 		for(int i = 0; i < allaRum.size(); i++){
 			ritaRum(g, allaRum.get(i));
+			ritaGångarFrånRum(g, allaRum.get(i));
 		}
-		ritaMarkörFörVarAnvändarenÄr(g);
-
 		
-
+		ritaMarkörFörVarAnvändarenÄr(g);
 		// TODO: Lägg till kod som ritar ut en grafisk vy av enNivå.
 		//
 		// För att underlätta finns hjälpmetoder som ska skrivas klara. Studera
@@ -64,7 +63,14 @@ public class Målarduk extends JPanel {
 	}
 
 	private void ritaGångarFrånRum(Graphics g, Rum ettRum) {
+		for(Väderstreck riktning: Väderstreck.values()){
+			try{
+				ritaGång(g, ettRum.gångenÅt(riktning));
+			}
+			catch(Exception e){
 
+			}	
+		}
 	}
 
 	private Punkt baspunkt(Rum ettRum, Väderstreck enRiktning) {
@@ -118,11 +124,24 @@ public class Målarduk extends JPanel {
 	}
 
 	private void ritaGång(Graphics g, Gång enGång) {
+		//Definerar punkterna 
+		Punkt b1 = baspunkt( enGång.från(), enGång.riktningUtUrFrån());
+		Punkt p1 = pivotpunkt(enGång.från(), enGång.riktningUtUrFrån());
+		Punkt b3 = baspunkt(enGång.till(), enGång.riktningInITill());
+		Punkt p3 = pivotpunkt(enGång.till(), enGång.riktningInITill());
+		// Ritar sträcken i gångarnas punkter 
+		Grafik.drawThickLine(g, b3, p3, GlobalaKonstanter.VÄGGTJOCKLEK, GlobalaKonstanter.GÅNGFÄRG);
+		Grafik.drawThickLine(g, b1, p1, GlobalaKonstanter.VÄGGTJOCKLEK, GlobalaKonstanter.GÅNGFÄRG);
+		Grafik.drawThickLine(g, p1, p3, GlobalaKonstanter.VÄGGTJOCKLEK, GlobalaKonstanter.GÅNGFÄRG);
 
+		// Ritar cirklar 
+		Grafik.fillCircle(g, p1, GlobalaKonstanter.HALV_VÄGGTJOCKLEK, GlobalaKonstanter.GÅNGFÄRG);
+		Grafik.fillCircle(g, p3, GlobalaKonstanter.HALV_VÄGGTJOCKLEK, GlobalaKonstanter.GÅNGFÄRG);
 	}
 
 	private void ritaMarkörFörVarAnvändarenÄr(Graphics g) {
-		Punkt userPosition= new Punkt(enNivå.nuvarandeRum().öv().x()+enNivå.nuvarandeRum().bredd()/2,
+		// Delar på 2 för att få användaren i mitten av rummet och inte i hörnet
+		Punkt userPosition= new Punkt(enNivå.nuvarandeRum().öv().x()+enNivå.nuvarandeRum().bredd()/2, 
 		 enNivå.nuvarandeRum().öv().y()+enNivå.nuvarandeRum().höjd()/2);
 		Grafik.fillCircle(g, userPosition, GlobalaKonstanter.ANVÄNDARRADIE, GlobalaKonstanter.ANVÄNDARFÄRG);
 	}
