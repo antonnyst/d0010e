@@ -12,14 +12,52 @@ public class Huvudprogram {
 	public static void main(String[] args) throws Exception {
 
 		ArrayList<Rum> rum = new ArrayList<Rum>();
+		//Kör detta för att visa nya rummen som vi skapat
+		//nyaRum(rum);
 
+		//Kör detta för att visa progammet med håkans rum
+		gamlaRum(rum);
 		// Dessa rum och gångar morsvarar de i laborationsinstruktionen.
 
 		// TODO Skapa även andra uppsättningar rum/gångar för att kunna testköra
 		// ordentligt. Lägg varje uppsättning (även den givna nedan) i separata
 		// metoder här i klassen. Såna bör vara deklarerade static för att kunna
 		// anropas från main (som ju också är static).
+	
+		// TODO: Skapa en nivå med argumenten rum.get(3) och rum.
+		Nivå nivån = new Nivå(rum.get(3), rum);
 
+
+
+		GUI gui = new GUI(nivån);
+		// TODO: Skapa en instans av klassen GUI och skicka med nivån ovan som
+		// argument. Man kan ha en referensvariabel som refererar till
+		// GUI-instansen men det är är inte nödvändigt.
+	}
+
+	public static void nyaRum(ArrayList<Rum> rum) throws Exception{
+		
+		rum.add(new Rum(Color.CYAN, 75, 75, 250, 250));
+		rum.add(new Rum(Color.CYAN, 75, 50, 500, 150));
+		rum.add(new Rum(Color.CYAN, 100, 50, 175, 100));
+		rum.add(new Rum(Color.CYAN, 100, 75, 355, 200));
+		//rum.add(new Rum(Color.CYAN, 100, 75, 3250, 500));
+		//rum.add(new Rum(Color.CYAN, 75, 75, 4500, 1250));
+		//rum.add(new Rum(Color.CYAN, 100, 50, 2750, 3250));
+		//rum.add(new Rum(Color.CYAN, 75, 100, 750, 2750));
+
+		Rum.kopplaIhop(rum.get(0), SÖDER, rum.get(1), NORR);
+		Rum.kopplaIhop(rum.get(0), ÖSTER, rum.get(2), NORR);
+		Rum.kopplaIhop(rum.get(1), SÖDER, rum.get(3), VÄSTER);
+		Rum.kopplaIhop(rum.get(2), SÖDER, rum.get(3), NORR);
+		Rum.kopplaIhop(rum.get(2), ÖSTER, rum.get(0), VÄSTER);
+
+	
+	}
+
+
+	public static void gamlaRum(ArrayList<Rum> rum) throws Exception{
+			
 		rum.add(new Rum(Color.RED, 75, 75, 25, 25));
 		rum.add(new Rum(Color.BLUE, 75, 50, 50, 150));
 		rum.add(new Rum(Color.MAGENTA, 100, 50, 175, 100));
@@ -39,20 +77,6 @@ public class Huvudprogram {
 		Rum.kopplaIhop(rum.get(3), ÖSTER, rum.get(5), VÄSTER);
 		Rum.kopplaIhop(rum.get(3), SÖDER, rum.get(6), NORR);
 		Rum.kopplaIhop(rum.get(7), ÖSTER, rum.get(6), VÄSTER);
-
-		// TODO: Skapa en nivå med argumenten rum.get(3) och rum.
-		Nivå nivån = new Nivå(rum.get(3), rum);
-
-
-
-		GUI gui = new GUI(nivån);
-		// TODO: Skapa en instans av klassen GUI och skicka med nivån ovan som
-		// argument. Man kan ha en referensvariabel som refererar till
-		// GUI-instansen men det är är inte nödvändigt.
+		
 	}
-
-	public static void nyaRum(ArrayList<Rum> rum) {
-
-	}
-
 }
