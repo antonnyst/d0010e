@@ -56,8 +56,8 @@ public class Nivå extends Observable {
 
 	// TODO: Skriv en instansmetod som returnerar alla rummen. Denna behöver
 	// Målarduk för att veta vilka rum som finns på nivån och som ska ritas ut.
-	public Rum[] rum() {
-		return (Rum[]) rum.toArray();
+	public ArrayList<Rum> rum() {
+		return this.rum;
 	}
 
 	// TODO Skriv en instansmetod som returnerar en referens till det rum som

@@ -2,6 +2,7 @@ package labb3.vy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -38,9 +39,9 @@ public class Målarduk extends JPanel {
 		
 		
 		//g.drawRect(300, 200, GlobalaKonstanter.VÄGGTJOCKLEK, GlobalaKonstanter.VÄGGTJOCKLEK);
-		Rum[] allaRum = enNivå.rum();
-		for(int i = 0; i < allaRum.length; i++){
-			ritaRum(g, allaRum[i]);
+		ArrayList<Rum> allaRum = enNivå.rum();
+		for(int i = 0; i < allaRum.size(); i++){
+			ritaRum(g, allaRum.get(i));
 		}
 		
 
