@@ -44,6 +44,7 @@ public class Målarduk extends JPanel {
 			ritaRum(g, allaRum.get(i));
 		}
 		
+		
 
 		// TODO: Lägg till kod som ritar ut en grafisk vy av enNivå.
 		//
@@ -54,8 +55,11 @@ public class Målarduk extends JPanel {
 	}
 
 	private void ritaRum(Graphics g, Rum ettRum) {
-		g.setColor(Color.RED);
+		g.setColor(GlobalaKonstanter.VÄGGFÄRG);
 		g.fillRect(ettRum.öv().x(), ettRum.öv().y(), ettRum.bredd(), ettRum.höjd());
+		g.setColor(ettRum.golvgärg());
+		g.fillRect(ettRum.öv().x()+GlobalaKonstanter.VÄGGTJOCKLEK, ettRum.öv().y()+GlobalaKonstanter.VÄGGTJOCKLEK,
+		 ettRum.bredd()-2*GlobalaKonstanter.VÄGGTJOCKLEK, ettRum.höjd()-2*GlobalaKonstanter.VÄGGTJOCKLEK);
 	}
 
 	private void ritaGångarFrånRum(Graphics g, Rum ettRum) {
