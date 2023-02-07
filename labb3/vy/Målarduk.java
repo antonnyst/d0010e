@@ -57,7 +57,7 @@ public class Målarduk extends JPanel {
 	private void ritaRum(Graphics g, Rum ettRum) {
 		g.setColor(GlobalaKonstanter.VÄGGFÄRG);
 		g.fillRect(ettRum.öv().x(), ettRum.öv().y(), ettRum.bredd(), ettRum.höjd());
-		g.setColor(ettRum.golvgärg());
+		g.setColor(ettRum.golvfärg());
 		g.fillRect(ettRum.öv().x()+GlobalaKonstanter.VÄGGTJOCKLEK, ettRum.öv().y()+GlobalaKonstanter.VÄGGTJOCKLEK,
 		 ettRum.bredd()-2*GlobalaKonstanter.VÄGGTJOCKLEK, ettRum.höjd()-2*GlobalaKonstanter.VÄGGTJOCKLEK);
 	}

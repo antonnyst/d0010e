@@ -27,7 +27,7 @@ public class Rum {
 
 	// TODO: Skriv "getters", metoder som returnerar tillståndsvariablernas
 	// värden.
-	public Color golvgärg() {
+	public Color golvfärg() {
 		return golvfärg;
 	}
 
