@@ -7,7 +7,7 @@ import labb3.verktyg.Punkt;
 
 public class Rum {
 
-	// TODO: Lägg till tillståndsvariabler.
+	// Tillståndsvariabler.
 	private Color golvfärg;
 	private int bredd;
 	private int höjd;
@@ -15,9 +15,7 @@ public class Rum {
 	private Gång[] gångar;
 
 	public Rum(Color golvfärg, int bredd, int höjd, int övX, int övY) {
-		// TODO: Kopiera parametrarna in i tillståndsvariablerna. (övX,övY) är
-		// koordinaten för rummets övre vänstra hörn och lagras lämpligen som en
-		// instans av klassen Punkt i paketet verktyg.
+		// Kopierar parametrarna in i tillståndsvariablerna.
 		this.golvfärg = golvfärg;
 		this.bredd = bredd;
 		this.höjd = höjd;
@@ -25,8 +23,7 @@ public class Rum {
 		this.gångar = new Gång[GlobalaKonstanter.ANTAL_VÄDERSTRECK];
 	}
 
-	// TODO: Skriv "getters", metoder som returnerar tillståndsvariablernas
-	// värden.
+	// Getters för variablerna
 	public Color golvfärg() {
 		return golvfärg;
 	}
@@ -44,22 +41,12 @@ public class Rum {
 	}
 
 
-	// TODO: Skriv instansmetoden
-	//
-	// finnsUtgångÅt(Väderstreck väderstreck)
-	//
-	// som ska kontrollera om det från ett rum finns en utgång åt visst
-	// väderstreck.
+	// Kolla om det finns en utgång
 	boolean finnsUtgångÅt(Väderstreck väderstreck) {
 		return this.gångar[väderstreck.index()] != null;
 	}
 
-	// TODO: Skriv instansmetoden
-	//
-	// Gång gångenÅt(Väderstreck väderstreck) som
-	//
-	// returnerar den gång som leder från ett rum i riktning väderstreck. Om
-	// sådan gång saknas ska ett undantag kastas med lämpligt felmeddelande.
+	// Returnerar gången åt den riktningen eller kastar ett undantag om det inte finns en gång
 	public Gång gångenÅt(Väderstreck väderstreck) throws Exception {
 		if (!finnsUtgångÅt(väderstreck)) {
 			throw new Exception("Ingen gång finns åt specificerat väderstreck");
@@ -67,7 +54,7 @@ public class Rum {
 		return this.gångar[väderstreck.index()];
 	}
 
-	// TODO: Skrivklar metoden nedan som kopplar ihop två rum med en gång.
+	// Kopplar ihop två rum
 	public static void kopplaIhop(Rum från, Väderstreck riktningUtUrFrån,
 			Rum till, Väderstreck riktningInITill) throws Exception {
 		// Ej till och från samma rum

@@ -5,29 +5,26 @@ import java.util.Observable;
 
 import labb3.verktyg.Punkt;
 
-// TODO: Gör så att klassen Nivå ärver Observable i paketet java.util. 
+// Nivån är observable
 public class Nivå extends Observable {
 
-	// TODO: Lägg till tillståndsvariabler för att hålla reda på nivåns rum och
-	// i vilket rum som användaren "är".
-
+	
+	// Tillståndsvariabler
 	private ArrayList<Rum> rum;
 	private Rum användarensrum;
 
 
 	public Nivå(Rum startrum, ArrayList<Rum> rum) throws Exception {
-		// TODO: Kopiera in startrum och rum in i tillståndsvariablerna.
+		// Flytta in tillståndsvariablerna
 		this.användarensrum = startrum;
 		this.rum = rum;
 
-		// TODO: Kontrollera att startrum finns med i rum. Om inte, kasta
-		// undantag med lämpligt felmeddelande.
+		// Kontroll av att startrum är del av rumlistan
 		if (!rum.contains(startrum)) {
 			throw new RuntimeException("Startrum ej del av rumlistan");
 		}
 
-		// TODO: Kontrollera att inga rum överlappar varandra. Om det ändå är
-		// fallet, kasta undantag med lämpligt felmeddelande.
+		// Kolla overlaps mellan rum
 		for (int i = 0; i < this.rum.size()-1; i++) {
 			for (int j = i+1; j < this.rum.size(); j++) {
 				if (checkOverlap(this.rum.get(i), this.rum.get(j))) {
@@ -37,6 +34,7 @@ public class Nivå extends Observable {
 		}
 	}
 
+	// Kollar overlaps mellan rum genom att testa motsatsen
 	private boolean checkOverlap(Rum rum1, Rum rum2) {
 		Punkt öv1 = rum1.öv();
 		Punkt öv2 = rum2.öv();
@@ -54,34 +52,25 @@ public class Nivå extends Observable {
 		return true;
 	}
 
-	// TODO: Skriv en instansmetod som returnerar alla rummen. Denna behöver
-	// Målarduk för att veta vilka rum som finns på nivån och som ska ritas ut.
+	// Getter för rumlistan
 	public ArrayList<Rum> rum() {
 		return this.rum;
 	}
 
-	// TODO Skriv en instansmetod som returnerar en referens till det rum som
-	// användaren "är i".
+	// Getter för användarens rum 
 	public Rum nuvarandeRum() {
 		return användarensrum;
 	}
 
-	// TODO: Skriv klar instansmetoden hoppaÅt nedan så att den ändrar det rum
-	// som användaren "är i" om det är möjligt genom att följa en gång från
-	// rummet och i riktning väderstreck.
-	//
-	// Om väderstreck inte är en riktning i vilken det finns en gång, så ändras
-	// inte rummet användaren "är i" (och inte heller kastas undantag). (Denna
-	// metod använder kontrolldelen av programmet för att begära ett hopp till
-	// angränsande rum efter att användaren tryckt på en tangent.)
-
+	// Förflytta användaren åt väderstreck
 	public void hoppaÅt(Väderstreck väderstreck) {
 		try {
 			användarensrum = användarensrum.gångenÅt(väderstreck).till();
 			setChanged();
 			notifyObservers();
 		} catch (Exception e) {
-			// Gick ej att gå
+			// .gångenÅt kastar ett undantag om det ej finns en gång åt väderstreck
+			// Fånga den här och gör ingenting eftersom inget ska hända om det ej finns en gång
 		}
 	}
 }
