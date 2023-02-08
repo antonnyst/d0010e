@@ -14,46 +14,37 @@ import labb3.modell.Väderstreck;
 import labb3.verktyg.Grafik;
 import labb3.verktyg.Punkt;
 
-// TODO: Ändra nästa rad så att en Målarduk "är-en" JPanel. 
 
+//Gör så att Målarduk(subklass) klassen ärver JPanel(Superklass)
 public class Målarduk extends JPanel {
 
 	private final Nivå enNivå;
 
 	public Målarduk(Nivå enNivå) {
 		this.enNivå = enNivå;
-		this.setBackground(GlobalaKonstanter.MARKFÄRG);
-		this.setFocusable(true);
-		// TODO: Sätt bakgrundsfärgen på this till MARKFÄRG.
-		// TODO: Anropa metoden setFocusable på this och med argumentet true.
+		this.setBackground(GlobalaKonstanter.MARKFÄRG); //Sätter bakgrundsfärgen till markfärg
+		this.setFocusable(true); // anropar metoden setFocusable på this med argument true
 		// Detta behövs för att lyssnaren i programmet ska reagera.
 	}
 
-	// TODO: Lätt till @Override på metoden nedan.
+	
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		// TODO Lägg till ett anrop till paintComponent i omedelbara
-		// överklassen (JPanel). Skicka med g som argument.
-		
-		
-		//g.drawRect(300, 200, GlobalaKonstanter.VÄGGTJOCKLEK, GlobalaKonstanter.VÄGGTJOCKLEK);
+		//Anropar till paintComponent i överklassen JPanel, skickar g som argument 
+
+
+		//Ritar en grafisk vy av enNivå
 		ArrayList<Rum> allaRum = enNivå.rum();
-		for(int i = 0; i < allaRum.size(); i++){
-			ritaRum(g, allaRum.get(i));
-			ritaGångarFrånRum(g, allaRum.get(i));
+		for(int i = 0; i < allaRum.size(); i++){ //Loopar genom alla rum som finns i 
+			ritaRum(g, allaRum.get(i));			//ArrayListen allaRum för att bli utritade på målarduk
+			ritaGångarFrånRum(g, allaRum.get(i)); //Gör samma sak med alla gångar.
 		}
 		
-		ritaMarkörFörVarAnvändarenÄr(g);
-		// TODO: Lägg till kod som ritar ut en grafisk vy av enNivå.
-		//
-		// För att underlätta finns hjälpmetoder som ska skrivas klara. Studera
-		// noga bilderna i labbinstruktionen för att få fram formlerna för
-		// bas- och pivotpunkternas koordinater. Använd ritmetoderna i klassen
-		// labb3.verktyg.Grafik. Anropa hjälpmetoderna från paintComponent.
+		ritaMarkörFörVarAnvändarenÄr(g); //Kallar på metoden som ritar ut var användaren finns
 	}
-
+	//Ritar rum
 	private void ritaRum(Graphics g, Rum ettRum) {
 		g.setColor(GlobalaKonstanter.VÄGGFÄRG);
 		g.fillRect(ettRum.öv().x(), ettRum.öv().y(), ettRum.bredd(), ettRum.höjd());
@@ -63,12 +54,11 @@ public class Målarduk extends JPanel {
 	}
 
 	private void ritaGångarFrånRum(Graphics g, Rum ettRum) {
-		for(Väderstreck riktning: Väderstreck.values()){
-			try{
+		for(Väderstreck riktning: Väderstreck.values()){ //Loopar genom alla riktingar i rummet för att hitta
+			try{										// in/ut-gångar
 				ritaGång(g, ettRum.gångenÅt(riktning));
 			}
-			catch(Exception e){
-
+			catch(Exception e){ 
 			}	
 		}
 	}
@@ -124,7 +114,8 @@ public class Målarduk extends JPanel {
 	}
 
 	private void ritaGång(Graphics g, Gång enGång) {
-		//Definerar punkterna 
+		//Definerar punkterna som variabler så att koden som ritar nedan 
+		// ska bli mer lättläst
 		Punkt b1 = baspunkt( enGång.från(), enGång.riktningUtUrFrån());
 		Punkt p1 = pivotpunkt(enGång.från(), enGång.riktningUtUrFrån());
 		Punkt b3 = baspunkt(enGång.till(), enGång.riktningInITill());
@@ -134,11 +125,12 @@ public class Målarduk extends JPanel {
 		Grafik.drawThickLine(g, b1, p1, GlobalaKonstanter.VÄGGTJOCKLEK, GlobalaKonstanter.GÅNGFÄRG);
 		Grafik.drawThickLine(g, p1, p3, GlobalaKonstanter.VÄGGTJOCKLEK, GlobalaKonstanter.GÅNGFÄRG);
 
-		// Ritar cirklar 
+		// Ritar cirklar på punkterna p1 och p3 enligt instruktion
 		Grafik.fillCircle(g, p1, GlobalaKonstanter.HALV_VÄGGTJOCKLEK, GlobalaKonstanter.GÅNGFÄRG);
 		Grafik.fillCircle(g, p3, GlobalaKonstanter.HALV_VÄGGTJOCKLEK, GlobalaKonstanter.GÅNGFÄRG);
 	}
-
+	//Ritar en markör för att visa var användaren befinner sig, i detta fall
+	//är det en svart prick som befinner sig i mitten av rummet som använder är i.
 	private void ritaMarkörFörVarAnvändarenÄr(Graphics g) {
 		// Delar på 2 för att få användaren i mitten av rummet och inte i hörnet
 		Punkt userPosition= new Punkt(enNivå.nuvarandeRum().öv().x()+enNivå.nuvarandeRum().bredd()/2, 

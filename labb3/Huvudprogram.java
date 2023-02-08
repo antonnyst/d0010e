@@ -12,31 +12,27 @@ public class Huvudprogram {
 	public static void main(String[] args) throws Exception {
 
 		ArrayList<Rum> rum = new ArrayList<Rum>();
+		
 		//Kör detta för att visa nya rummen som vi skapat
+
 		//nyaRum(rum);
 
 		//Kör detta för att visa progammet med håkans rum
+		//Detta är en ny uppsättning av rum och gångar
 		gamlaRum(rum);
 		// Dessa rum och gångar morsvarar de i laborationsinstruktionen.
-
-		// TODO Skapa även andra uppsättningar rum/gångar för att kunna testköra
-		// ordentligt. Lägg varje uppsättning (även den givna nedan) i separata
-		// metoder här i klassen. Såna bör vara deklarerade static för att kunna
-		// anropas från main (som ju också är static).
 	
-		// TODO: Skapa en nivå med argumenten rum.get(3) och rum.
+		// Skapar en nivå med argumenten rum.get(3) och rum.
 		Nivå nivån = new Nivå(rum.get(3), rum);
 
 
-
+		// Skapar en instans av klassen GUI som tar nivån som argument
 		GUI gui = new GUI(nivån);
-		// TODO: Skapa en instans av klassen GUI och skicka med nivån ovan som
-		// argument. Man kan ha en referensvariabel som refererar till
-		// GUI-instansen men det är är inte nödvändigt.
+		
 	}
 
 	public static void nyaRum(ArrayList<Rum> rum) throws Exception{
-		
+		// Här är rummen vi skapade enligt TODO
 		rum.add(new Rum(Color.CYAN, 75, 75, 250, 250));
 		rum.add(new Rum(Color.CYAN, 75, 50, 500, 150));
 		rum.add(new Rum(Color.CYAN, 100, 50, 175, 100));
@@ -57,7 +53,7 @@ public class Huvudprogram {
 
 
 	public static void gamlaRum(ArrayList<Rum> rum) throws Exception{
-			
+		// Här har vi rummen som Håkan hade skapat	
 		rum.add(new Rum(Color.RED, 75, 75, 25, 25));
 		rum.add(new Rum(Color.BLUE, 75, 50, 50, 150));
 		rum.add(new Rum(Color.MAGENTA, 100, 50, 175, 100));
