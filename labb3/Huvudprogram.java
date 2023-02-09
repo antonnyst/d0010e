@@ -1,3 +1,5 @@
+// Anton Nyström Viggo Härdelin 
+
 package labb3;
 
 import static labb3.modell.Väderstreck.*;

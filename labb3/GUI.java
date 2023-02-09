@@ -1,3 +1,5 @@
+// Anton Nyström Viggo Härdelin 
+
 package labb3;
 
 import java.awt.Dimension;
