@@ -28,7 +28,11 @@ public class Nivå extends Observable {
 
 		// Kolla overlaps mellan rum
 		for (int i = 0; i < this.rum.size()-1; i++) {
-			for (int j = i+1; j < this.rum.size(); j++) {
+			for (int j = 0; j < this.rum.size(); j++) {
+				if (i == j) {
+					continue;
+				}
+				
 				if (checkOverlap(this.rum.get(i), this.rum.get(j))) {
 					throw new RuntimeException("Rum överlappar");
 				}
@@ -47,7 +51,7 @@ public class Nivå extends Observable {
 		}
 
 		// 1 ovanför 2 eller 2 ovanför 1
-		if (öv1.y() - rum1.höjd() < öv2.y() || öv2.y() - rum2.höjd() < öv1.y()) {
+		if (öv1.y() + rum1.höjd() < öv2.y() || öv2.y() + rum2.höjd() < öv1.y()) {
 			return false;
 		}
 
