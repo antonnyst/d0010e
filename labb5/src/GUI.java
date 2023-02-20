@@ -61,7 +61,25 @@ public class GUI extends JFrame {
         // Create buttons
         Situation situation = new Situation(this.display);
 
+        this.keyPad.add(new DigitButton("7", situation));
+        this.keyPad.add(new DigitButton("8", situation));
+        this.keyPad.add(new DigitButton("9", situation));
+        this.keyPad.add(new DigitButton("7", situation));
+        this.keyPad.add(new DigitButton("8", situation));
+        this.keyPad.add(new DigitButton("9", situation));
+        this.keyPad.add(new DigitButton("7", situation));
+        this.keyPad.add(new DigitButton("8", situation));
+        this.keyPad.add(new DigitButton("7", situation));
+        this.keyPad.add(new DigitButton("8", situation));
+        this.keyPad.add(new DigitButton("9", situation));
+        this.keyPad.add(new DigitButton("7", situation));
+        this.keyPad.add(new DigitButton("8", situation));
+        this.keyPad.add(new DigitButton("9", situation));
+        this.keyPad.add(new DigitButton("7", situation));
+        this.keyPad.add(new DigitButton("8", situation));
+
         
+
         this.pack();
         this.setVisible(true);
     }

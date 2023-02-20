@@ -1,4 +1,7 @@
+public class BinOpButton extends CalculatorButton {
 
-public class BinOpButton {
+    public BinOpButton(String label, Situation situation) {
+        super(label, situation);
+    }
 
 }
