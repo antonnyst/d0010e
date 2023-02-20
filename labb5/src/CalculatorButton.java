@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,6 +10,8 @@ public abstract class CalculatorButton extends JButton {
     public CalculatorButton(String label, Situation situation) {
         super(label);
         this.situation = situation;
+
+        this.setFont(new Font(this.getFont().getFontName(), Font.PLAIN, 40));
 
         this.addActionListener(new ActionListener() {
             @Override
