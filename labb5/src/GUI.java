@@ -61,11 +61,6 @@ public class GUI extends JFrame {
         // Create buttons
         Situation situation = new Situation(this.display);
 
-        for (int i = 0; i<16; i++) {
-            this.keyPad.add(new JButton(""+i));
-        }
-
-
         
         this.pack();
         this.setVisible(true);
