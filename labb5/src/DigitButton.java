@@ -31,12 +31,4 @@ public class DigitButton extends CalculatorButton {
 
         }
     }
-
-    private String trim(String text) {
-        while (text.length() > 1 && text.charAt(0) == '0') {
-            text = text.substring(1);
-        }
-        return text;
-    }
-
 }
