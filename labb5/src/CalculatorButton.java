@@ -3,9 +3,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import java.awt.*;
 
 public abstract class CalculatorButton extends JButton {
     Situation situation;
+    //Color färg;
     
     public CalculatorButton(String label, Situation situation) {
         super(label);
@@ -22,4 +24,13 @@ public abstract class CalculatorButton extends JButton {
     }
 
     public abstract void transition();
+
+    public abstract void setColor();
+
+    @Override
+    public String toString(){
+        return getLabel();
+    }
+
+
 }

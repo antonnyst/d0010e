@@ -9,5 +9,15 @@ public class DigitButton extends CalculatorButton {
 
         System.out.println("hej");
     }
-    
+
+    @Override
+    public void setColor() {
+
+    }
+
+    @Override
+    public String toString() {
+        return null;
+    }
+
 }
