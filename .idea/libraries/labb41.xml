@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="labb41">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/labb4/src/labb4.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
