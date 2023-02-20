@@ -58,6 +58,9 @@ public class GUI extends JFrame {
         this.canvas.add(this.keyPad, constraints);
 
 
+        // Create buttons
+        Situation situation = new Situation(this.display);
+
         for (int i = 0; i<16; i++) {
             this.keyPad.add(new JButton(""+i));
         }
