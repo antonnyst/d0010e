@@ -7,10 +7,12 @@ import java.awt.*;
 
 public abstract class CalculatorButton extends JButton {
     Situation situation;
+    String label;
     //Color färg;
     
     public CalculatorButton(String label, Situation situation) {
         super(label);
+        this.label = label;
         this.situation = situation;
 
         this.setFont(new Font(this.getFont().getFontName(), Font.PLAIN, 40));
@@ -29,7 +31,7 @@ public abstract class CalculatorButton extends JButton {
 
     @Override
     public String toString(){
-        return getLabel();
+        return label;
     }
 
 
