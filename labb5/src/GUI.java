@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.util.function.IntBinaryOperator;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -31,7 +32,7 @@ public class GUI extends JFrame {
         // Create display
         this.display = new JLabel();
         this.display.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        this.display.setText("TEST");
+        this.display.setText("0");
         this.display.setFont(new Font(this.display.getFont().getFontName(), Font.PLAIN, 40));
         this.display.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -63,19 +64,39 @@ public class GUI extends JFrame {
         this.keyPad.add(new DigitButton("7", situation));
         this.keyPad.add(new DigitButton("8", situation));
         this.keyPad.add(new DigitButton("9", situation));
-        this.keyPad.add(new BinOpButton("/", situation));
+        this.keyPad.add(new BinOpButton("/", situation, new IntBinaryOperator() {
+            @Override
+            public int applyAsInt(int arg0, int arg1) {
+                return arg0 / arg1;
+            }
+        }));
         this.keyPad.add(new DigitButton("4", situation));
         this.keyPad.add(new DigitButton("5", situation));
         this.keyPad.add(new DigitButton("6", situation));
-        this.keyPad.add(new BinOpButton("*", situation));
+        this.keyPad.add(new BinOpButton("*", situation, new IntBinaryOperator() {
+            @Override
+            public int applyAsInt(int arg0, int arg1) {
+                return arg0 * arg1;
+            }
+        }));
         this.keyPad.add(new DigitButton("1", situation));
         this.keyPad.add(new DigitButton("2", situation));
         this.keyPad.add(new DigitButton("3", situation));
-        this.keyPad.add(new BinOpButton("-", situation));
+        this.keyPad.add(new BinOpButton("-", situation, new IntBinaryOperator() {
+            @Override
+            public int applyAsInt(int arg0, int arg1) {
+                return arg0 - arg1;
+            }
+        }));
         this.keyPad.add(new DigitButton("0", situation));
         this.keyPad.add(new EqualsButton("=", situation));
         this.keyPad.add(new CancelButton("C", situation));
-        this.keyPad.add(new BinOpButton("+", situation));        
+        this.keyPad.add(new BinOpButton("+", situation, new IntBinaryOperator() {
+            @Override
+            public int applyAsInt(int arg0, int arg1) {
+                return arg0 + arg1;
+            }
+        }));        
 
         this.pack();
         this.setVisible(true);

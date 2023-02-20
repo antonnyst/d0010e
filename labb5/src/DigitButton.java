@@ -6,8 +6,37 @@ public class DigitButton extends CalculatorButton {
 
     @Override
     public void transition() {
-        this.situation.display.setText(this.toString());
-        System.out.println("hej" + this.toString());
+        switch(this.situation.state) {
+            case HasResult:
+                this.situation.state = State.Input1;
+                this.situation.setDisplay(Integer.parseInt(this.label));
+                break;
+            case Input1:
+                int value1 = this.situation.getDisplay();    
+                value1 = value1 * 10 + Integer.parseInt(this.label);
+                this.situation.setDisplay(value1);
+                break;
+            case Input2:
+                int value2 = this.situation.getDisplay();    
+                value2 = value2 * 10 + Integer.parseInt(this.label);
+                this.situation.setDisplay(value2);
+                break;
+            case OpReady:
+                this.situation.leftOperand = this.situation.getDisplay();
+                this.situation.state = State.Input2;
+                this.situation.setDisplay(Integer.parseInt(this.label));
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    private String trim(String text) {
+        while (text.length() > 1 && text.charAt(0) == '0') {
+            text = text.substring(1);
+        }
+        return text;
     }
 
 }

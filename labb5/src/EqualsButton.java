@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 public class EqualsButton extends CalculatorButton {
 
     public EqualsButton(String label, Situation situation) {
@@ -6,8 +8,30 @@ public class EqualsButton extends CalculatorButton {
 
     @Override
     public void transition() {
-        // TODO Auto-generated method stub
-        
+        switch(this.situation.state) {
+            case HasResult:
+                // Do nothing
+                break;
+            case Input1:
+                // Do nothing
+                break;
+            case Input2:
+                this.situation.state = State.HasResult;
+                this.situation.binaryOperator.setColor(Color.WHITE);
+                this.situation.setDisplay(
+                    this.situation.binaryOperator.result(
+                        this.situation.leftOperand, 
+                        this.situation.getDisplay()
+                    )
+                );
+                break;
+            case OpReady:
+                // Do nothing
+                break;
+            default:
+                break;
+
+        }
     }
     
 }
