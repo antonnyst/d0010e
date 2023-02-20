@@ -9,14 +9,4 @@ public class BinOpButton extends CalculatorButton {
 
     }
 
-    @Override
-    public void setColor() {
-
-    }
-
-    @Override
-    public String toString() {
-        return null;
-    }
-
 }

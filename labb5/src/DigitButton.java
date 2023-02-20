@@ -6,18 +6,8 @@ public class DigitButton extends CalculatorButton {
 
     @Override
     public void transition() {
-
-        System.out.println("hej");
-    }
-
-    @Override
-    public void setColor() {
-
-    }
-
-    @Override
-    public String toString() {
-        return null;
+        this.situation.display.setText(this.toString());
+        System.out.println("hej" + this.toString());
     }
 
 }

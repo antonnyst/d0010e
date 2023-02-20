@@ -16,7 +16,7 @@ public abstract class CalculatorButton extends JButton {
         this.situation = situation;
 
         this.setFont(new Font(this.getFont().getFontName(), Font.PLAIN, 40));
-
+        this.setColor(Color.WHITE);
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -27,7 +27,9 @@ public abstract class CalculatorButton extends JButton {
 
     public abstract void transition();
 
-    public abstract void setColor();
+    public void setColor(Color color) {
+        this.setBackground(color);
+    }
 
     @Override
     public String toString(){
