@@ -1,3 +1,4 @@
+// Anton Nystrom Malcolm Ovin
 public class DigitButton extends CalculatorButton {
 
     public DigitButton(String string, Situation situation) {
