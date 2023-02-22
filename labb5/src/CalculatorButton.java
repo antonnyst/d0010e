@@ -1,10 +1,10 @@
 // Anton Nystrom Malcolm Ovin
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import java.awt.*;
 
 public abstract class CalculatorButton extends JButton {
     static final Color DEFAULT_COLOR = Color.WHITE;
