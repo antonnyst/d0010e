@@ -1,6 +1,4 @@
 // Anton Nystrom Malcolm Ovin
-import java.awt.Color;
-
 public class EqualsButton extends CalculatorButton {
 
     public EqualsButton(String label, Situation situation) {
@@ -18,7 +16,7 @@ public class EqualsButton extends CalculatorButton {
                 break;
             case Input2:
                 this.situation.state = State.HasResult;
-                this.situation.binaryOperator.setColor(Color.WHITE);
+                this.situation.binaryOperator.setColor(CalculatorButton.DEFAULT_COLOR);
                 this.situation.setDisplay(
                     this.situation.binaryOperator.result(
                         this.situation.leftOperand, 

@@ -7,9 +7,11 @@ import javax.swing.JButton;
 import java.awt.*;
 
 public abstract class CalculatorButton extends JButton {
+    static final Color DEFAULT_COLOR = Color.WHITE;
+    static final Color HIGHLIGT_COLOR = Color.RED;
+
     Situation situation;
     String label;
-    //Color färg;
     
     public CalculatorButton(String label, Situation situation) {
         super(label);
@@ -36,6 +38,4 @@ public abstract class CalculatorButton extends JButton {
     public String toString(){
         return label;
     }
-
-
 }

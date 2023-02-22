@@ -1,5 +1,4 @@
 // Anton Nystrom Malcolm Ovin
-import java.awt.Color;
 import java.util.function.IntBinaryOperator;
 
 public class BinOpButton extends CalculatorButton {
@@ -16,12 +15,12 @@ public class BinOpButton extends CalculatorButton {
         switch(this.situation.state) {
             case HasResult:
                 this.situation.state = State.OpReady;
-                this.setColor(Color.RED);
+                this.setColor(CalculatorButton.HIGHLIGT_COLOR);
                 this.situation.binaryOperator = this;
                 this.situation.leftOperand = this.situation.getDisplay();
                 break;
             case Input1:
-                this.setColor(Color.RED);
+                this.setColor(CalculatorButton.HIGHLIGT_COLOR);
                 this.situation.state = State.OpReady;
                 this.situation.binaryOperator = this;
                 break;
@@ -29,9 +28,9 @@ public class BinOpButton extends CalculatorButton {
                 // Do nothing2
                 break;
             case OpReady:
-                this.situation.binaryOperator.setColor(Color.WHITE);
+                this.situation.binaryOperator.setColor(CalculatorButton.DEFAULT_COLOR);
                 this.situation.binaryOperator = this;
-                this.setColor(Color.RED);
+                this.setColor(CalculatorButton.HIGHLIGT_COLOR);
                 break;
             default:
                 break;
