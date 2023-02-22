@@ -14,32 +14,36 @@ public class BinOpButton extends CalculatorButton {
     public void transition() {
         switch(this.situation.state) {
             case HasResult:
+                // Gå till OpReady och tänd operatorn
                 this.situation.state = State.OpReady;
-                this.setColor(CalculatorButton.HIGHLIGT_COLOR);
+                this.setColor(CalculatorButton.HIGHLIGHT_COLOR);
+                // Samt sätt vald operator till denna 
                 this.situation.binaryOperator = this;
-                this.situation.leftOperand = this.situation.getDisplay();
                 break;
             case Input1:
-                this.setColor(CalculatorButton.HIGHLIGT_COLOR);
+                // Gå till OpReady och tänd operatorn
                 this.situation.state = State.OpReady;
+                this.setColor(CalculatorButton.HIGHLIGHT_COLOR);
+                // Samt sätt vald operator till denna
                 this.situation.binaryOperator = this;
                 break;
             case Input2:
-                // Do nothing2
+                // Gör inget
                 break;
             case OpReady:
+                // Släck tidigare vald operator
                 this.situation.binaryOperator.setColor(CalculatorButton.DEFAULT_COLOR);
+                // Sätt vald operator till denna
                 this.situation.binaryOperator = this;
-                this.setColor(CalculatorButton.HIGHLIGT_COLOR);
+                // Tänd denna operator
+                this.setColor(CalculatorButton.HIGHLIGHT_COLOR);
                 break;
             default:
                 break;
-
         }
     }
 
     public int result(int a, int b) {
         return this.op.applyAsInt(a, b);
     }
-
 }

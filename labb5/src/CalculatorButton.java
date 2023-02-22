@@ -8,7 +8,7 @@ import javax.swing.JButton;
 
 public abstract class CalculatorButton extends JButton {
     static final Color DEFAULT_COLOR = Color.WHITE;
-    static final Color HIGHLIGT_COLOR = Color.RED;
+    static final Color HIGHLIGHT_COLOR = Color.RED;
 
     Situation situation;
     String label;

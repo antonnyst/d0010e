@@ -1,6 +1,5 @@
 // Anton Nystrom Malcolm Ovin
 public class EqualsButton extends CalculatorButton {
-
     public EqualsButton(String label, Situation situation) {
         super(label, situation);
     }
@@ -9,14 +8,17 @@ public class EqualsButton extends CalculatorButton {
     public void transition() {
         switch(this.situation.state) {
             case HasResult:
-                // Do nothing
+                // Gör inget
                 break;
             case Input1:
-                // Do nothing
+                // Gör inget
                 break;
             case Input2:
+                // Gå till HasResult
                 this.situation.state = State.HasResult;
+                // Släck operatorn
                 this.situation.binaryOperator.setColor(CalculatorButton.DEFAULT_COLOR);
+                // Sätt displayen till det beräknade resultatet mha operatorn
                 this.situation.setDisplay(
                     this.situation.binaryOperator.result(
                         this.situation.leftOperand, 
@@ -25,12 +27,10 @@ public class EqualsButton extends CalculatorButton {
                 );
                 break;
             case OpReady:
-                // Do nothing
+                // Gör inget
                 break;
             default:
                 break;
-
         }
     }
-    
 }
