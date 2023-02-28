@@ -13,7 +13,7 @@ public class Event {
     }
 
     public void runEvent() {
-
+        this.state.notify(this);
     }
 
     public double getTime() {

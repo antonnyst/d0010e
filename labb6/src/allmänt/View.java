@@ -12,7 +12,6 @@ public class View implements Observer {
 
     @Override
     public void update(Observable arg0, Object arg1) {
-        // TODO Gör utskrift
-
+        // Gör inget
     }
 }
