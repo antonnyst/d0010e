@@ -16,4 +16,9 @@ public class CloseStoreEvent extends Event {
         // Sätt shopOpen till false
         ((SnabbköpState)this.state).setShopStatus(false);
     }
+
+    @Override
+    public String toString() {
+        return "Stänger    ---"; 
+    }
 }

@@ -56,4 +56,9 @@ public class ArrivalEvent extends Event {
             // Butiken är stängd :(
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("Ankomst % 6d", this.customer.id); 
+    }
 }
