@@ -2,7 +2,7 @@ package snabbköp;
 
 public class SnabbköpState extends State {
     private int antalKunder, maxAntalKunder, antalKunderHandlat, antalKunderKöat, antalKunderMissat, antalKassor, ledigaKassor;
-    private boolean shopOpen;
+    private boolean shopOpen = true;
     private double tidLedigaKassor, tidKunderKöat;
     private FIFO kassaKö;
     private ArrivalTime arrivalTime;
@@ -33,6 +33,37 @@ public class SnabbköpState extends State {
         return this.ledigaKassor;
     }
 
+    public int getAntalKunder()  {
+        return this.antalKunder;
+    }
+
+    public void increaseAntalKunder() {
+        if (antalKunder + 1 > maxAntalKunder) {
+            throw new Exception("Too many customers in the store.");
+        }
+        this.antalKunder++;
+    }
+    
+    public int getAntalKunderKöat()  {
+        return this.antalKunderKöat;
+    }
+
+    public int getAntalKunderMissat()  {
+        return this.antalKunderMissat;
+    }
+
+    public double getTidKunderKöat() {
+        return this.tidKunderKöat;
+    }
+
+    public double getTidLedigaKassor()  {
+        return this.tidLedigaKassor;
+    }
+
+    public boolean getShopOpen() {
+        return this.shopOpen;
+    }
+
     public ArrivalTime getArrivalTime() {
         return this.arrivalTime;
     }
@@ -49,5 +80,8 @@ public class SnabbköpState extends State {
         return this.customerFactory;
     }
 
+    public FIFO getKassakö()  {
+        return this.kassaKö;
+    }
     
 }
