@@ -2,11 +2,21 @@ package allmänt;
 
 public class Event {
     
-    public Event() {
+    private State state;
+    private EventQueue queue;
+    private double time;
 
+    public Event(State state, EventQueue queue, double time) {
+        this.state = state;
+        this.queue = queue;
+        this.time = time;
     }
 
     public void runEvent() {
 
+    }
+
+    public double getTime() {
+        return time;
     }
 }
