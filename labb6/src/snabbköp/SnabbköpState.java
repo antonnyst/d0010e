@@ -12,7 +12,7 @@ public class SnabbköpState extends State {
     private PaymentTime paymentTime;
     private CustomerFactory customerFactory;
 
-    public SnabbköpState(int maxKunder, int antalKassor, double lambda, int kmin, int kmax, int pmin, int pmax, int f)  {
+    public SnabbköpState(int maxKunder, int antalKassor, double lambda, double kmin, double kmax, double pmin, double pmax, int f)  {
         this.maxAntalKunder = maxKunder;
         this.antalKassor = antalKassor;
         this.ledigaKassor = antalKassor;

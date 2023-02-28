@@ -10,7 +10,7 @@ public class Simulator {
     }
 
     public void run() {
-        while (state.stop == false) {
+        while (state.stop == false && queue.content.size() > 0) {
             Event nextEvent = queue.next();
             nextEvent.runEvent();
         }
