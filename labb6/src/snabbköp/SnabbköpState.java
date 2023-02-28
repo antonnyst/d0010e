@@ -58,6 +58,14 @@ public class SnabbköpState extends State {
         this.antalKunder--;
     }
     
+    public int getAntalKunderHandlat() {
+        return this.antalKunderHandlat;
+    }
+
+    public void increaseAntalKunderHandlat()  {
+        this.antalKunderHandlat++;
+    }
+
     public int getAntalKunderKöat()  {
         return this.antalKunderKöat;
     }
