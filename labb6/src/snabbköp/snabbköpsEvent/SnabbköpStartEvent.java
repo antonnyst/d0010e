@@ -14,8 +14,10 @@ public class SnabbköpStartEvent extends StartEvent {
         super.runEvent();
         // Lägg till första arrival event
         
+        // Beräkna tid
         double tid = ((SnabbköpState)this.state).getArrivalTime().finishTime(this.time);
 
-        this.queue.insert(new ArrivalEvent(this.state, this.queue, tid));
+        // Skapa event och lägg i eventqueue
+        this.queue.insert(new ArrivalEvent((SnabbköpState)this.state, this.queue, tid));
     }
 }

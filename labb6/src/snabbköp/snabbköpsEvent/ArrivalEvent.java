@@ -2,10 +2,10 @@ package snabbköp.snabbköpsEvent;
 
 import allmänt.Event;
 import allmänt.EventQueue;
-import allmänt.State;
+import snabbköp.SnabbköpState;
 
 public class ArrivalEvent extends Event {
-    public ArrivalEvent(State state, EventQueue queue, double time) {
+    public ArrivalEvent(SnabbköpState state, EventQueue queue, double time) {
         super(state, queue, time);
     }
 
