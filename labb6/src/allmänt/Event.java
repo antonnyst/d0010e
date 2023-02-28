@@ -3,7 +3,7 @@ package allmänt;
 public class Event {
     
     private State state;
-    private EventQueue queue;
+        private EventQueue queue;
     private double time;
 
     public Event(State state, EventQueue queue, double time) {
