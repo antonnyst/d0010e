@@ -93,6 +93,10 @@ public class SnabbköpState extends State {
     public boolean getShopOpen() {
         return this.shopOpen;
     }
+    
+    public void setShopStatus(boolean status) {
+        this.shopOpen = status;
+    }
 
     public ArrivalTime getArrivalTime() {
         return this.arrivalTime;
