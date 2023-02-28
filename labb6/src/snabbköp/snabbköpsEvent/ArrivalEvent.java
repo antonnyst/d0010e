@@ -5,7 +5,6 @@ import allmänt.EventQueue;
 import allmänt.State;
 
 public class ArrivalEvent extends Event {
-    
     public ArrivalEvent(State state, EventQueue queue, double time) {
         super(state, queue, time);
     }
@@ -14,5 +13,4 @@ public class ArrivalEvent extends Event {
     public void runEvent() {
         super.runEvent();
     }
-
 }
