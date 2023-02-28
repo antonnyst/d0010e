@@ -41,7 +41,6 @@ public class PaymentEvent extends Event {
 
 
 
-        this.state.increaseLedigaKassor();
 
         
 
