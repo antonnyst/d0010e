@@ -11,7 +11,11 @@ public class EventQueue {
     }
 
     public void insert(Event event) {
-        // TODO
+        for (int i = 0; i < content.size(); i++) {
+            if (event.getTime() < content.get(i).getTime()) {
+                content.add(i, event);
+            }
+        }
     }
 
     public Event next() {
