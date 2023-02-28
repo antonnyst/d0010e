@@ -12,8 +12,6 @@ public class FIFO {
     }
 
     public Customer next(){
-        Customer tmp = content.get(0);
-        content.remove(0);
-        return tmp;
+        return content.remove(0);
     }
 }
