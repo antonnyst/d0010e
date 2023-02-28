@@ -14,8 +14,10 @@ public class EventQueue {
         for (int i = 0; i < content.size(); i++) {
             if (event.getTime() < content.get(i).getTime()) {
                 content.add(i, event);
+                return;
             }
         }
+        content.add(event);
     }
 
     public Event next() {
