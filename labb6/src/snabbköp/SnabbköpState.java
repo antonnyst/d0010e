@@ -1,5 +1,7 @@
 package snabbköp;
 
+import allmänt.State;
+
 public class SnabbköpState extends State {
     private int antalKunder, maxAntalKunder, antalKunderHandlat, antalKunderKöat, antalKunderMissat, antalKassor, ledigaKassor;
     private boolean shopOpen = true;
@@ -10,7 +12,7 @@ public class SnabbköpState extends State {
     private PaymentTime paymentTime;
     private CustomerFactory customerFactory;
 
-    public SnabbköpState(int maxKunder, int antalKassor, double lambda, int kmin, int pmin, int pmax, int f)  {
+    public SnabbköpState(int maxKunder, int antalKassor, double lambda, int kmin, int kmax, int pmin, int pmax, int f)  {
         this.maxAntalKunder = maxKunder;
         this.antalKassor = antalKassor;
         this.ledigaKassor = antalKassor;
@@ -18,7 +20,7 @@ public class SnabbköpState extends State {
         this.paymentTime = new PaymentTime(f, kmin, kmax);
         this.pickupTime = new PickupTime(f, pmin, pmax);
         this.kassaKö = new FIFO();
-        this.customerFactory = new customerFactory();
+        this.customerFactory = new CustomerFactory();
     }
     
     public int getMaxAntalKunder() {
@@ -37,9 +39,9 @@ public class SnabbköpState extends State {
         return this.antalKunder;
     }
 
-    public void increaseAntalKunder() {
+    public void increaseAntalKunder() throws RuntimeException {
         if (antalKunder + 1 > maxAntalKunder) {
-            throw new Exception("Too many customers in the store.");
+            throw new RuntimeException("Too many customers in the store.");
         }
         this.antalKunder++;
     }
