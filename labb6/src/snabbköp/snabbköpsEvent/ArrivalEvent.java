@@ -18,7 +18,7 @@ public class ArrivalEvent extends Event {
             
             // Lägg till nästa arrival
             double arrivalTime = ((SnabbköpState)this.state).getArrivalTime().finishTime(time);
-            PickupEvent arrivalEvent = new PickupEvent(state, queue, arrivalTime);
+            ArrivalEvent arrivalEvent = new ArrivalEvent((SnabbköpState)state, queue, arrivalTime);
             this.queue.insert(arrivalEvent);
 
             if (((SnabbköpState)this.state).getAntalKunder() < ((SnabbköpState)this.state).getMaxAntalKunder()) {
