@@ -5,6 +5,9 @@ import allmänt.StartEvent;
 import snabbköp.SnabbköpState;
 
 public class SnabbköpStartEvent extends StartEvent {
+    
+    private SnabbköpState state;
+
     public SnabbköpStartEvent(SnabbköpState state, EventQueue queue) {
         super(state, queue);
     }
@@ -15,9 +18,16 @@ public class SnabbköpStartEvent extends StartEvent {
         // Lägg till första arrival event
         
         // Beräkna tid
-        double tid = ((SnabbköpState)this.state).getArrivalTime().finishTime(this.time);
+        double tid = this.state.getArrivalTime().finishTime(this.time);
 
         // Skapa event och lägg i eventqueue
-        this.queue.insert(new ArrivalEvent((SnabbköpState)this.state, this.queue, tid));
+        this.queue.insert(
+            new ArrivalEvent(
+                this.state,
+                this.queue,
+                tid,
+                this.state.getCustomerFactory().getCustomer()
+            )
+        );
     }
 }

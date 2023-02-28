@@ -24,11 +24,15 @@ public class PickupEvent extends Event {
             this.state.decreaseLedigaKassor();
 
             // Skapa paymentevent för när vi betalat klart
-            double paymentTime = ((SnabbköpState)this.state).getPaymentTime().finishTime(this.time);
-            PaymentEvent paymentEvent = new PaymentEvent(state, queue, paymentTime);
+            double paymentTime = this.state.getPaymentTime().finishTime(this.time);
+            PaymentEvent paymentEvent = new PaymentEvent(state, queue, paymentTime, this.customer);
             this.queue.insert(paymentEvent);
         } else {
-            ((SnabbköpState)this.state).getKassakö().add(this.customer);
+            // Vi måste stå i kö >:(
+            // Kom ihåg när vi började köa
+            this.customer.startKöTid = this.time;
+            this.state.getKassakö().add(this.customer);
+            this.state.increaseAntalKunderKöat();
         }
     }
 }
