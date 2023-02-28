@@ -19,5 +19,7 @@ public class SnabbköpView extends View {
 
         System.out.println("Event som ska hända " + event.toString());
         System.out.println("tid " + event.getTime());
+        
+        System.out.println("kö " + ((SnabbköpState) this.state).getKassakö().toString());
     }
 }

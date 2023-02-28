@@ -1,5 +1,7 @@
 package snabbköp;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import snabbköp.CustomerFactory.Customer;
 
 
@@ -15,11 +17,12 @@ public class FIFO {
         return content.remove(0);
     }
 
-    public String toString(){
+    @Override
+    public String toString() {
         int[] tmp = new int[content.size()];
         for(int i = 0; i < content.size(); i++){
             tmp[i] = (content.get(i).id);
         }
-        return tmp.toString();
+        return Arrays.toString(tmp);
     }
 }
