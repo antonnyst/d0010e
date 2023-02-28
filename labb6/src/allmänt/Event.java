@@ -1,10 +1,9 @@
 package allmänt;
 
 public class Event {
-    
-    private State state;
-        private EventQueue queue;
-    private double time;
+    protected State state;
+    protected EventQueue queue;
+    protected double time;
 
     public Event(State state, EventQueue queue, double time) {
         this.state = state;
