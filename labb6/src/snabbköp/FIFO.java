@@ -25,4 +25,13 @@ public class FIFO {
         }
         return Arrays.toString(tmp);
     }
+
+    public Boolean hasNext(){
+        if (content.size() != 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
