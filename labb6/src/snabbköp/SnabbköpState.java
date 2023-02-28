@@ -35,6 +35,14 @@ public class SnabbköpState extends State {
         return this.ledigaKassor;
     }
 
+    public void increaseLedigaKassor() {
+        this.ledigaKassor++;
+    }
+
+    public void decreaseLedigaKassor() {
+        this.ledigaKassor--;
+    }
+
     public int getAntalKunder()  {
         return this.antalKunder;
     }
@@ -45,21 +53,41 @@ public class SnabbköpState extends State {
         }
         this.antalKunder++;
     }
+
+    public void decreaseAntalKunder()  {
+        this.antalKunder--;
+    }
     
     public int getAntalKunderKöat()  {
         return this.antalKunderKöat;
+    }
+
+    public void increaseAntalKunderKöat()  {
+        this.antalKunderKöat++;
     }
 
     public int getAntalKunderMissat()  {
         return this.antalKunderMissat;
     }
 
+    public void increaseKunderMissat()  {
+        this.antalKunderMissat++;
+    }
+
     public double getTidKunderKöat() {
         return this.tidKunderKöat;
     }
 
+    public void increaseTidKunderKöat(double tid)  {
+        this.tidKunderKöat += tid;
+    }
+
     public double getTidLedigaKassor()  {
         return this.tidLedigaKassor;
+    }
+
+    public void increaseTidLedigaKassor(double tid) {
+        this.tidLedigaKassor += tid;
     }
 
     public boolean getShopOpen() {
