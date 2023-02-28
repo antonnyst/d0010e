@@ -13,6 +13,7 @@ public class ArrivalEvent extends Event {
     public ArrivalEvent(SnabbköpState state, EventQueue queue, double time, Customer customer) {
         super(state, queue, time);
         this.customer = customer;
+        this.state = state;   
     }
 
     @Override

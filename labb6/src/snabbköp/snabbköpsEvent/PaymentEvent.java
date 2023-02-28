@@ -12,9 +12,10 @@ public class PaymentEvent extends Event {
     private Customer customer;
     private SnabbköpState state;
 
-    public PaymentEvent(State state, EventQueue queue, double time, Customer customer) {
+    public PaymentEvent(SnabbköpState state, EventQueue queue, double time, Customer customer) {
         super(state, queue, time);
         this.customer = customer;
+        this.state = state;
     }
 
     @Override

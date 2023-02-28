@@ -13,6 +13,7 @@ public class PickupEvent extends Event {
     public PickupEvent(SnabbköpState state, EventQueue queue, double time, Customer customer) {
         super(state, queue, time);
         this.customer = customer;
+        this.state = state;   
     }
 
     @Override

@@ -10,6 +10,7 @@ public class SnabbköpStartEvent extends StartEvent {
 
     public SnabbköpStartEvent(SnabbköpState state, EventQueue queue) {
         super(state, queue);
+        this.state = state;   
     }
 
     @Override
