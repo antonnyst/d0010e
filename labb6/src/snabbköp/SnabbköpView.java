@@ -1,5 +1,9 @@
 package snabbköp;
 
-public class SnabbköpView {
+public class SnabbköpView extends View {
     
+    @Override
+    public update() {
+
+    }
 }
