@@ -1,11 +1,19 @@
 package snabbköp;
+import java.util.ArrayList;
+import snabbköp.CustomerFactory.Customer;
+
+
 
 public class FIFO {
-    ArrayList<Event> content;
+    ArrayList<CustomerFactory.Customer> content = new ArrayList<CustomerFactory.Customer>();
 
-    public next(){
-
+    public void add(Customer c){
+        content.add(c);
     }
 
-    public add(CustomerFactory)
+    public Customer next(){
+        Customer tmp = content.get(0);
+        content.remove(0);
+        return tmp;
+    }
 }
