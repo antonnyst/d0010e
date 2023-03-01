@@ -34,4 +34,8 @@ public class FIFO {
             return false;
         }
     }
+
+    public int size() {
+        return content.size();
+    }
 }

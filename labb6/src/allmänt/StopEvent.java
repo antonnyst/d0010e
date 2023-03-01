@@ -10,4 +10,9 @@ public class StopEvent extends Event {
         super.runEvent();
         this.state.stop = true;
     }
+
+    @Override
+    public String toString() {
+        return "Stop"; 
+    }
 }

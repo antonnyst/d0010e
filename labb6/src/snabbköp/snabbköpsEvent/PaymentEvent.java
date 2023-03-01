@@ -37,9 +37,10 @@ public class PaymentEvent extends Event {
         else{
             this.state.increaseLedigaKassor();
         }
+    }   
+    
+    @Override
+    public String toString() {
+        return String.format("Betalning % 4d", this.customer.id); 
     }
-
-    
-
-    
 }

@@ -1,5 +1,6 @@
 package snabbköp;
 
+import allmänt.Event;
 import allmänt.State;
 
 public class SnabbköpState extends State {
@@ -124,6 +125,25 @@ public class SnabbköpState extends State {
 
     public FIFO getKassakö()  {
         return this.kassaKö;
+    }
+
+    @Override
+    public void notify(Event source) {
+        // Beräkna tid
+        double deltaTime = source.getTime() - this.getTime();
+
+        // Antal kunder som köar * tiden
+        double köTid = this.getKassakö().size() * deltaTime;
+
+        // Antal lediga kassot * tiden
+        double ledigTid = this.getLedigaKassor() * deltaTime;
+
+        // Lägg till i state
+        this.increaseTidKunderKöat(köTid);
+        this.increaseTidLedigaKassor(ledigTid);
+                
+        // Allmäna notify för att få view att skriva ut
+        super.notify(source);
     }
     
 }

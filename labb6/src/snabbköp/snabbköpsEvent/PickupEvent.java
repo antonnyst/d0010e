@@ -36,4 +36,9 @@ public class PickupEvent extends Event {
             this.state.increaseAntalKunderKöat();
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("Plock   % 6d", this.customer.id); 
+    }
 }
