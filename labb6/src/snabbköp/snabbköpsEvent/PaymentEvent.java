@@ -37,18 +37,9 @@ public class PaymentEvent extends Event {
         else{
             this.state.increaseLedigaKassor();
         }
-
-
-
-
-
-        
-
-
-
-
-
     }
+
+    
 
     
 }
