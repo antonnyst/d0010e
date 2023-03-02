@@ -1,73 +1,81 @@
 package huvudprogram;
 
-import javax.lang.model.util.ElementScanner14;
-
 import allmänt.EventQueue;
 import allmänt.Simulator;
 import allmänt.StopEvent;
 import snabbköp.SnabbköpState;
-import snabbköp.SnabbköpView;
 import snabbköp.snabbköpsEvent.CloseStoreEvent;
 import snabbköp.snabbköpsEvent.SnabbköpStartEvent;
 import java.util.Random;
 
 public class Optimize {
     
-    public static final int M = 5;
-    public static final double L = 1;
 
-    public static final double LOW_COLLECTION_TIME = 0.5d;
-    public static final double HIGH_COLLECTION_TIME = 1d;
-
-    public static final double LOW_PAYMENT_TIME = 2d;
-    public static final double HIGH_PAYMENT_TIME = 3d;
-
-    public static final int SEED = 1234;
-    public static final double END_TIME = 10.0d;
-    public static final double STOP_TIME = 999.0d;
-
-    int result = metod3(M,L,LOW_COLLECTION_TIME,HIGH_COLLECTION_TIME,LOW_PAYMENT_TIME,HIGH_PAYMENT_TIME,END_TIME,STOP_TIME,SEED);
+    public static void main(String[] args) {
+        int result = metod3(K.M,K.L,K.LOW_COLLECTION_TIME,K.HIGH_COLLECTION_TIME,K.LOW_PAYMENT_TIME,K.HIGH_PAYMENT_TIME,K.SEED,K.END_TIME,K.STOP_TIME);
+        System.out.println("result : " + result);
+    }
 
 
 
-    public SnabbköpState runOptSim(int maxKunder,int antalKassor, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f){
+
+    public static SnabbköpState runOptSim(int maxKunder,int antalKassor, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
         SnabbköpState state = new SnabbköpState(maxKunder,antalKassor,lambda,kmin,kmax,pmin,pmax,f);
         EventQueue queue = new EventQueue();
 
         queue.insert(new SnabbköpStartEvent(state, queue));
-        queue.insert(new StopEvent(state, queue, 999));
-        queue.insert(new CloseStoreEvent(state, queue, 10));
+        queue.insert(new StopEvent(state, queue, stopTime));
+        queue.insert(new CloseStoreEvent(state, queue, endTime));
         
         Simulator sim = new Simulator(state, queue);
         sim.run();
         return state;
     }
 
-    public int findOpt(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f){
-        for (int i = 1; i <= maxKunder; i++){
-            if (runOptSim(maxKunder,i,lambda,kmin,kmax,pmin,pmax,f).getAntalKunderMissat() == 0){
-                return i;
+    public static int findOpt(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
+
+        int L = 0;
+        int R = maxKunder;
+
+        while (true) {
+
+            int mid = (L+R)/2;
+
+            if (L+1==R || L==R+1) {
+                int winner = Math.max(L,R)+1;
+                System.out.println("returning " + runOptSim(maxKunder,winner,lambda,kmin,kmax,pmin,pmax,f,endTime,stopTime).getAntalKunderMissat());
+                return winner;
+            }
+            //System.out.println(L + " " + R);
+            if (runOptSim(maxKunder,mid,lambda,kmin,kmax,pmin,pmax,f,endTime,stopTime).getAntalKunderMissat() == 0) {
+                R = (L+R)/2 - 1;
+            } else {
+                L = (L+R)/2 + 1;
             }
         }
-        return maxKunder;
+
+
+        
     }
 
-    public int metod3(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f){
+    public static int metod3(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
         int antalGångerFåttSammaReturn = 0;
         Random rand = new Random(f);
 
 
-        int senastReturn = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt());
+        int senastReturn = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(), endTime, stopTime);
 
 
 
         while (antalGångerFåttSammaReturn < 100){
-            int currentReturnedMax = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt());
-
-            if (senastReturn <= currentReturnedMax){
+            int currentReturnedMax = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(),endTime,stopTime);
+            System.out.println(currentReturnedMax);
+            if (senastReturn >= currentReturnedMax){
+                System.out.println("same");
                 antalGångerFåttSammaReturn++;
             }
             else{
+                System.out.println("higher");
                 senastReturn = currentReturnedMax;
                 antalGångerFåttSammaReturn = 0;
             }
