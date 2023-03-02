@@ -1,5 +1,7 @@
 package huvudprogram;
 
+import javax.lang.model.util.ElementScanner14;
+
 import allmänt.EventQueue;
 import allmänt.Simulator;
 import allmänt.StopEvent;
@@ -7,10 +9,24 @@ import snabbköp.SnabbköpState;
 import snabbköp.SnabbköpView;
 import snabbköp.snabbköpsEvent.CloseStoreEvent;
 import snabbköp.snabbköpsEvent.SnabbköpStartEvent;
+import java.util.Random;
 
 public class Optimize {
     
+    public static final int M = 5;
+    public static final double L = 1;
 
+    public static final double LOW_COLLECTION_TIME = 0.5d;
+    public static final double HIGH_COLLECTION_TIME = 1d;
+
+    public static final double LOW_PAYMENT_TIME = 2d;
+    public static final double HIGH_PAYMENT_TIME = 3d;
+
+    public static final int SEED = 1234;
+    public static final double END_TIME = 10.0d;
+    public static final double STOP_TIME = 999.0d;
+
+    int result = metod3(M,L,LOW_COLLECTION_TIME,HIGH_COLLECTION_TIME,LOW_PAYMENT_TIME,HIGH_PAYMENT_TIME,SEED,END_TIME,STOP_TIME);
 
 
 
@@ -36,5 +52,27 @@ public class Optimize {
         return maxKunder;
     }
 
+    public int metod3(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f){
+        int antalGångerFåttSammaReturn = 0;
+        Random rand = new Random(f);
+
+
+        int senastReturn = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt());
+
+
+
+        while (antalGångerFåttSammaReturn < 100){
+            int currentReturnedMax = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt());
+
+            if (senastReturn <= currentReturnedMax){
+                antalGångerFåttSammaReturn++;
+            }
+            else{
+                senastReturn = currentReturnedMax;
+                antalGångerFåttSammaReturn = 0;
+            }
+        }
+        return senastReturn;
+    }
     
 }
