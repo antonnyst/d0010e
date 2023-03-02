@@ -34,28 +34,24 @@ public class Optimize {
 
     public static int findOpt(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
 
-        int L = 0;
-        int R = maxKunder;
+        int lowestMissed = 99999;
+        int lowestMissedLowesetIndex = 0;
 
-        while (true) {
+        for(int i = 1; i <= maxKunder; i++) {
+            int miss = runOptSim(maxKunder, i, lambda, kmin, kmax, pmin, pmax, f, endTime, stopTime).getAntalKunderMissat();
 
-            int mid = (L+R)/2;
-
-            if (L+1==R || L==R+1) {
-                int winner = Math.max(L,R)+1;
-                System.out.println("returning " + runOptSim(maxKunder,winner,lambda,kmin,kmax,pmin,pmax,f,endTime,stopTime).getAntalKunderMissat());
-                return winner;
+            if (miss == 0) {
+                return i;
             }
-            //System.out.println(L + " " + R);
-            if (runOptSim(maxKunder,mid,lambda,kmin,kmax,pmin,pmax,f,endTime,stopTime).getAntalKunderMissat() == 0) {
-                R = (L+R)/2 - 1;
-            } else {
-                L = (L+R)/2 + 1;
+            if (miss <= lowestMissed) {
+                lowestMissed = miss;
+                lowestMissedLowesetIndex = i;
             }
         }
 
+        System.out.println(lowestMissedLowesetIndex);
 
-        
+        return lowestMissedLowesetIndex;        
     }
 
     public static int metod3(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
