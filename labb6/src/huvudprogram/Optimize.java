@@ -26,7 +26,7 @@ public class Optimize {
     public static final double END_TIME = 10.0d;
     public static final double STOP_TIME = 999.0d;
 
-    int result = metod3(M,L,LOW_COLLECTION_TIME,HIGH_COLLECTION_TIME,LOW_PAYMENT_TIME,HIGH_PAYMENT_TIME,SEED,END_TIME,STOP_TIME);
+    int result = metod3(M,L,LOW_COLLECTION_TIME,HIGH_COLLECTION_TIME,LOW_PAYMENT_TIME,HIGH_PAYMENT_TIME,END_TIME,STOP_TIME,SEED);
 
 
 
