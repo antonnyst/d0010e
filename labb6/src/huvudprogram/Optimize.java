@@ -34,7 +34,7 @@ public class Optimize {
 
     public static int findOpt(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
 
-        int lowestMissed = 99999;
+        int lowestMissed = Integer.MAX_VALUE;
         int lowestMissedLowesetIndex = 0;
 
         for(int i = 1; i <= maxKunder; i++) {
