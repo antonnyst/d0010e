@@ -11,16 +11,20 @@ import java.util.Random;
 
 public class Optimize {
     
-
     public static void main(String[] args) {
-        int result = metod3(K.M,K.L,K.LOW_PAYMENT_TIME,K.HIGH_PAYMENT_TIME,K.LOW_COLLECTION_TIME,K.HIGH_COLLECTION_TIME,K.SEED,K.END_TIME,K.STOP_TIME);
-        System.out.println("result : " + result);
+        int val = 0;
+        if (val == 1) {
+            // Kör metod 3
+            int result = findMinimalKassor(K.M,K.L,K.LOW_PAYMENT_TIME,K.HIGH_PAYMENT_TIME,K.LOW_COLLECTION_TIME,K.HIGH_COLLECTION_TIME,K.SEED,K.END_TIME,K.STOP_TIME);
+            System.out.println("result : " + result);
+        } else {
+            // Kör metod 2
+            int result = findMinimalKassorForSeed(K.M,K.L,K.LOW_PAYMENT_TIME,K.HIGH_PAYMENT_TIME,K.LOW_COLLECTION_TIME,K.HIGH_COLLECTION_TIME,K.SEED,K.END_TIME,K.STOP_TIME);
+            System.out.println("result : " + result);
+        }
     }
 
-
-
-
-    public static SnabbköpState runOptSim(int maxKunder,int antalKassor, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
+    public static SnabbköpState runSimulationOnce(int maxKunder,int antalKassor, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
         SnabbköpState state = new SnabbköpState(maxKunder,antalKassor,lambda,kmin,kmax,pmin,pmax,f);
         EventQueue queue = new EventQueue();
 
@@ -33,28 +37,7 @@ public class Optimize {
         return state;
     }
 
-    public static int findOpt(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
-
-        int l = 0;
-        int r = maxKunder-1;
-
-        int target = runOptSim(maxKunder, maxKunder, lambda, kmin, kmax, pmin, pmax, f, endTime, stopTime).getAntalKunderMissat();
-
-        while(l < r){
-            int mid = (l + r)/2;
-            
-
-            int miss = runOptSim(maxKunder, mid, lambda, kmin, kmax, pmin, pmax, f, endTime, stopTime).getAntalKunderMissat();
-            if (l == r){
-                return mid;
-            }
-            else if (miss > target){
-                l = mid+1;
-            }
-            else if (miss == target){
-                r = mid;
-            }
-        }
+    /*public static int findOpt(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
 
         int lowestMissed = Integer.MAX_VALUE;
         int lowestMissedLowesetIndex = 0;
@@ -74,12 +57,12 @@ public class Optimize {
         System.out.println(lowestMissedLowesetIndex);
 
         return lowestMissedLowesetIndex;        
-    }
+    }*/
 
-    public static int findOptGOOD(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
+    public static int findMinimalKassorForSeed(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
 
         
-        int target = runOptSim(maxKunder, maxKunder, lambda, kmin, kmax, pmin, pmax, f, endTime, stopTime).getAntalKunderMissat();
+        int target = runSimulationOnce(maxKunder, maxKunder, lambda, kmin, kmax, pmin, pmax, f, endTime, stopTime).getAntalKunderMissat();
 
         int L = 0;
         int R = maxKunder;
@@ -87,7 +70,7 @@ public class Optimize {
         int bestAmt = Integer.MAX_VALUE;
         while (L<R) {
             int mid = (L+R)/2;
-            int misses = runOptSim(maxKunder, mid, lambda, kmin, kmax, pmin, pmax, f, endTime, stopTime).getAntalKunderMissat();
+            int misses = runSimulationOnce(maxKunder, mid, lambda, kmin, kmax, pmin, pmax, f, endTime, stopTime).getAntalKunderMissat();
 
             if (misses < best || (misses == best && mid < bestAmt)) {
                 best = misses;
@@ -104,17 +87,17 @@ public class Optimize {
         return bestAmt;
     }
 
-    public static int metod3(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
+    public static int findMinimalKassor(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
         int counter = 0;
         Random rand = new Random(f);
 
 
-        int senastReturn = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(), endTime, stopTime);
+        int senastReturn = findMinimalKassorForSeed(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(), endTime, stopTime);
 
 
 
         while (counter < 100){
-            int currentReturnedMax = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(),endTime,stopTime);
+            int currentReturnedMax = findMinimalKassorForSeed(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(),endTime,stopTime);
             System.out.println(currentReturnedMax);
             if (currentReturnedMax <= senastReturn){
                 System.out.println("same");
@@ -128,5 +111,4 @@ public class Optimize {
         }
         return senastReturn;
     }
-    
 }
