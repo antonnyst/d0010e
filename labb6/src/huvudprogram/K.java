@@ -46,7 +46,7 @@ public class K {
   public static final int SEED = 13;
   public static final double END_TIME = 8.0d;
   public static final double STOP_TIME = 999.0d;
-  */
+  
 	// Ex 4
   /*
     public static final int M = 100;
