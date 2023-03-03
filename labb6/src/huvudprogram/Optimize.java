@@ -43,7 +43,7 @@ public class Optimize {
             if (miss == 0) {
                 return i;
             }
-            if (miss <= lowestMissed) {
+            if (miss < lowestMissed) {
                 lowestMissed = miss;
                 lowestMissedLowesetIndex = i;
             }

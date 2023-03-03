@@ -12,6 +12,7 @@ public class SnabbköpState extends State {
     private PickupTime pickupTime;
     private PaymentTime paymentTime;
     private CustomerFactory customerFactory;
+    private int f;
 
     public SnabbköpState(int maxKunder, int antalKassor, double lambda, double kmin, double kmax, double pmin, double pmax, int f)  {
         this.maxAntalKunder = maxKunder;
@@ -22,6 +23,7 @@ public class SnabbköpState extends State {
         this.pickupTime = new PickupTime(f, pmin, pmax);
         this.kassaKö = new FIFO();
         this.customerFactory = new CustomerFactory();
+        this.f = f;
     }
     
     public int getMaxAntalKunder() {
@@ -125,6 +127,10 @@ public class SnabbköpState extends State {
 
     public FIFO getKassakö()  {
         return this.kassaKö;
+    }
+
+    public int getSeed() {
+        return this.f;
     }
 
     @Override

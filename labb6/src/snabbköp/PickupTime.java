@@ -16,4 +16,11 @@ public class PickupTime {
     public double finishTime(double currentTime) {
         return currentTime + random.nextDouble(min, max);
     }
+
+    public double getMin() {
+        return this.min;
+    }
+    public double getMax() {
+        return this.max;
+    }
 }
