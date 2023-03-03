@@ -14,7 +14,7 @@ public class PaymentTime {
     }
 
     public double finishTime(double currentTime) {
-        return currentTime + random.nextDouble(min, max);
+        return currentTime + min + random.nextDouble()*(max-min);
     }
 
     public double getMin() {

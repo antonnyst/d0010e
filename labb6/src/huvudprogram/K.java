@@ -2,7 +2,7 @@ package huvudprogram;
 public class K {
 
 	// Ex 1: (som sim1)
-  /*
+  
   public static final int M = 5;
   public static final double L = 1;
 
@@ -33,7 +33,7 @@ public class K {
 	  public static final double STOP_TIME = 999.0d;
 	 // */
 	// Ex 3: (som sim2)
-  
+  /*
   public static final int M = 7;
   public static final double L = 3;
 

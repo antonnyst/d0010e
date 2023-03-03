@@ -13,7 +13,10 @@ public class ArrivalTime {
 
     public double finishTime(double currentTime) {
         // Exponentialdistrubering med lambda
-        return currentTime + (Math.log(1-random.nextDouble())/(-lambda));
+        // Korrekta matten är (Math.log(1-random.nextDouble())/(-lambda))
+
+        // Håkans nedan               VVVV
+        return currentTime + (Math.log(random.nextDouble())/(-lambda));
     }
     public double getLambda() {
         return lambda;
