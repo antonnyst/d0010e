@@ -12,7 +12,7 @@ public class Optimize {
     
 
     public static void main(String[] args) {
-        int result = metod3(K.M,K.L,K.LOW_COLLECTION_TIME,K.HIGH_COLLECTION_TIME,K.LOW_PAYMENT_TIME,K.HIGH_PAYMENT_TIME,K.SEED,K.END_TIME,K.STOP_TIME);
+        int result = metod3(K.M,K.L,K.LOW_PAYMENT_TIME,K.HIGH_PAYMENT_TIME,K.LOW_COLLECTION_TIME,K.HIGH_COLLECTION_TIME,K.SEED,K.END_TIME,K.STOP_TIME);
         System.out.println("result : " + result);
     }
 
@@ -54,17 +54,45 @@ public class Optimize {
         return lowestMissedLowesetIndex;        
     }
 
+    public static int findOptGOOD(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
+
+        
+        int target = runOptSim(maxKunder, maxKunder, lambda, kmin, kmax, pmin, pmax, f, endTime, stopTime).getAntalKunderMissat();
+
+        int L = 0;
+        int R = maxKunder;
+        int best = Integer.MAX_VALUE;
+        int bestAmt = Integer.MAX_VALUE;
+        while (L<R) {
+            int mid = (L+R)/2;
+            int misses = runOptSim(maxKunder, mid, lambda, kmin, kmax, pmin, pmax, f, endTime, stopTime).getAntalKunderMissat();
+
+            if (misses < best || (misses == best && mid < bestAmt)) {
+                best = misses;
+                bestAmt = mid;
+            }
+
+            if (misses > target) {
+                L = mid+1; 
+            } else {
+                R = mid;
+            }
+        }
+
+        return bestAmt;
+    }
+
     public static int metod3(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
         int counter = 0;
         Random rand = new Random(f);
 
 
-        int senastReturn = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(), endTime, stopTime);
+        int senastReturn = findOptGOOD(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(), endTime, stopTime);
 
 
 
         while (counter < 100){
-            int currentReturnedMax = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(),endTime,stopTime);
+            int currentReturnedMax = findOptGOOD(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(),endTime,stopTime);
             System.out.println(currentReturnedMax);
             if (currentReturnedMax <= senastReturn){
                 System.out.println("same");

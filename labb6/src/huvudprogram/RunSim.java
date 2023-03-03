@@ -12,7 +12,7 @@ import snabbköp.snabbköpsEvent.SnabbköpStartEvent;
 
 public class RunSim {
     public static void main(String[] args) {
-        SnabbköpState state = new SnabbköpState(K.M,2, K.L, K.LOW_PAYMENT_TIME, K.HIGH_PAYMENT_TIME, K.LOW_COLLECTION_TIME, K.HIGH_COLLECTION_TIME, K.SEED);
+        SnabbköpState state = new SnabbköpState(K.M,3, K.L, K.LOW_PAYMENT_TIME, K.HIGH_PAYMENT_TIME, K.LOW_COLLECTION_TIME, K.HIGH_COLLECTION_TIME, K.SEED);
         EventQueue queue = new EventQueue();
         queue.insert(new SnabbköpStartEvent(state, queue));
         queue.insert(new StopEvent(state, queue, K.STOP_TIME));
