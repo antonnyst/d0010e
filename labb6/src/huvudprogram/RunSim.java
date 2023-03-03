@@ -24,13 +24,5 @@ public class RunSim {
         Simulator sim = new Simulator(state, queue);
         sim.run();
 
-        System.out.println("AAA");
-        Random rand = new Random(1234);
-
-        double first = rand.nextDouble();
-
-        System.out.println("first" + first);
-        System.out.println(Math.log(first)/(-1.0));
-
     }
 }

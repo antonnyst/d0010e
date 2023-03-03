@@ -3,6 +3,7 @@ package snabbköp;
 import allmänt.Event;
 import allmänt.State;
 import allmänt.StopEvent;
+import snabbköp.snabbköpsEvent.ArrivalEvent;
 
 public class SnabbköpState extends State {
     private int antalKunder, maxAntalKunder, antalKunderHandlat, antalKunderKöat, antalKunderMissat, antalKassor, ledigaKassor;
@@ -140,15 +141,15 @@ public class SnabbköpState extends State {
 
     @Override
     public void notify(Event source) {
-        
-        if (!(source instanceof StopEvent)) {
+
+        // Kör ej om stopEvent ELLER om arrivalevent efter stängning
+        if (!(source instanceof ArrivalEvent && !this.shopOpen) && !(source instanceof StopEvent)) {
             // Beräkna tid
             double deltaTime = source.getTime() - this.getTime();
 
             // Antal kunder som köar * tiden
             double köTid = this.getKassakö().size() * deltaTime;
-
-            // Antal lediga kassot * tiden
+            // Antal lediga kassor * tiden
             double ledigTid = this.getLedigaKassor() * deltaTime;
 
             // Lägg till i state
