@@ -1,3 +1,4 @@
+/** Ovin Malcolm, Nyström Anton, Gista Nikolaos, Souza Delfino Clara */
 package huvudprogram;
 
 import java.util.Random;

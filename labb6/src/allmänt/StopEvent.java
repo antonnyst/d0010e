@@ -1,3 +1,4 @@
+/** Ovin Malcolm, Nyström Anton, Gista Nikolaos, Souza Delfino Clara */
 package allmänt;
 
 public class StopEvent extends Event {

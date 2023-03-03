@@ -1,3 +1,4 @@
+/** Ovin Malcolm, Nyström Anton, Gista Nikolaos, Souza Delfino Clara */
 package huvudprogram;
 
 import allmänt.EventQueue;
@@ -33,6 +34,27 @@ public class Optimize {
     }
 
     public static int findOpt(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
+
+        int l = 0;
+        int r = maxKunder-1;
+
+        int target = runOptSim(maxKunder, maxKunder, lambda, kmin, kmax, pmin, pmax, f, endTime, stopTime).getAntalKunderMissat();
+
+        while(l < r){
+            int mid = (l + r)/2;
+            
+
+            int miss = runOptSim(maxKunder, mid, lambda, kmin, kmax, pmin, pmax, f, endTime, stopTime).getAntalKunderMissat();
+            if (l == r){
+                return mid;
+            }
+            else if (miss > target){
+                l = mid+1;
+            }
+            else if (miss == target){
+                r = mid;
+            }
+        }
 
         int lowestMissed = Integer.MAX_VALUE;
         int lowestMissedLowesetIndex = 0;
@@ -87,12 +109,12 @@ public class Optimize {
         Random rand = new Random(f);
 
 
-        int senastReturn = findOptGOOD(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(), endTime, stopTime);
+        int senastReturn = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(), endTime, stopTime);
 
 
 
         while (counter < 100){
-            int currentReturnedMax = findOptGOOD(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(),endTime,stopTime);
+            int currentReturnedMax = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(),endTime,stopTime);
             System.out.println(currentReturnedMax);
             if (currentReturnedMax <= senastReturn){
                 System.out.println("same");
