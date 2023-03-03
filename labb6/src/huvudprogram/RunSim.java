@@ -10,7 +10,7 @@ import snabbköp.snabbköpsEvent.SnabbköpStartEvent;
 
 public class RunSim {
     public static void main(String[] args) {
-        SnabbköpState state = new SnabbköpState(5,2, 1.0, 0.5, 1.0, 2.0, 3.0, 1234);
+        SnabbköpState state = new SnabbköpState(5,2, 2.0, 0.5, 1.0, 2.0, 3.0, 1234);
         EventQueue queue = new EventQueue();
         queue.insert(new SnabbköpStartEvent(state, queue));
         queue.insert(new StopEvent(state, queue, 999));

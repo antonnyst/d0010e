@@ -2,6 +2,7 @@ package snabbköp;
 
 import allmänt.Event;
 import allmänt.State;
+import allmänt.StopEvent;
 
 public class SnabbköpState extends State {
     private int antalKunder, maxAntalKunder, antalKunderHandlat, antalKunderKöat, antalKunderMissat, antalKassor, ledigaKassor;
@@ -13,6 +14,7 @@ public class SnabbköpState extends State {
     private PaymentTime paymentTime;
     private CustomerFactory customerFactory;
     private int f;
+    private double closeTime;
 
     public SnabbköpState(int maxKunder, int antalKassor, double lambda, double kmin, double kmax, double pmin, double pmax, int f)  {
         this.maxAntalKunder = maxKunder;
@@ -107,6 +109,9 @@ public class SnabbköpState extends State {
     
     public void setShopStatus(boolean status) {
         this.shopOpen = status;
+        if (!status) {
+            this.closeTime = this.getTime();
+        }
     }
 
     public ArrivalTime getArrivalTime() {
@@ -135,21 +140,29 @@ public class SnabbköpState extends State {
 
     @Override
     public void notify(Event source) {
-        // Beräkna tid
-        double deltaTime = source.getTime() - this.getTime();
+        
+        if (!(source instanceof StopEvent)) {
+            // Beräkna tid
+            double deltaTime = source.getTime() - this.getTime();
 
-        // Antal kunder som köar * tiden
-        double köTid = this.getKassakö().size() * deltaTime;
+            // Antal kunder som köar * tiden
+            double köTid = this.getKassakö().size() * deltaTime;
 
-        // Antal lediga kassot * tiden
-        double ledigTid = this.getLedigaKassor() * deltaTime;
+            // Antal lediga kassot * tiden
+            double ledigTid = this.getLedigaKassor() * deltaTime;
 
-        // Lägg till i state
-        this.increaseTidKunderKöat(köTid);
-        this.increaseTidLedigaKassor(ledigTid);
+            // Lägg till i state
+            this.increaseTidKunderKöat(köTid);
+            this.increaseTidLedigaKassor(ledigTid);
+        }
+        
                 
         // Allmäna notify för att få view att skriva ut
         super.notify(source);
+    }
+
+    public double getCloseTime() {
+        return this.closeTime;
     }
     
 }
