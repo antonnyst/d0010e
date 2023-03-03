@@ -15,4 +15,7 @@ public class ArrivalTime {
         // Exponentialdistrubering med lambda
         return currentTime + (Math.log(1-random.nextDouble())/(-lambda));
     }
+    public double getLambda() {
+        return lambda;
+    }
 }
