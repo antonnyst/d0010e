@@ -55,7 +55,7 @@ public class Optimize {
     }
 
     public static int metod3(int maxKunder, Double lambda,Double kmin,Double kmax,double pmin, double pmax, int f, double endTime, double stopTime){
-        int antalGångerFåttSammaReturn = 0;
+        int counter = 0;
         Random rand = new Random(f);
 
 
@@ -63,17 +63,17 @@ public class Optimize {
 
 
 
-        while (antalGångerFåttSammaReturn < 100){
+        while (counter < 100){
             int currentReturnedMax = findOpt(maxKunder, lambda, kmin, kmax, pmin, pmax, rand.nextInt(),endTime,stopTime);
             System.out.println(currentReturnedMax);
-            if (senastReturn >= currentReturnedMax){
+            if (currentReturnedMax <= senastReturn){
                 System.out.println("same");
-                antalGångerFåttSammaReturn++;
+                counter++;
             }
             else{
                 System.out.println("higher");
                 senastReturn = currentReturnedMax;
-                antalGångerFåttSammaReturn = 0;
+                counter = 0;
             }
         }
         return senastReturn;
