@@ -11,7 +11,6 @@ public class CustomerFactory {
 
     public class Customer {
         public final int id;
-        public double startKöTid;
         private Customer(int id) {
             this.id = id;
         }
