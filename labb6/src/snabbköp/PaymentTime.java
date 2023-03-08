@@ -15,6 +15,7 @@ public class PaymentTime {
     private Random random;
     private double min;
     private double max;
+    
     /**
     * Konstruktor för PaymentTime
     * @param f Fröet som används för slumpgeneratorn
@@ -43,7 +44,7 @@ public class PaymentTime {
     public double getMin() {
         return this.min;
     }
-    
+
     /**
     * Returnerar största tiden som ett betalningevent förväntas ta
     * @return Största tiden som ett betalningevent förväntas ta
