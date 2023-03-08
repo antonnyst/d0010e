@@ -3,7 +3,8 @@
  * @author Nyström Anton
  * @author Nikolaos
  * @author Delfino Clara 
- */package allmänt;
+ */
+package allmänt;
 
 public class Simulator {
     State state;
