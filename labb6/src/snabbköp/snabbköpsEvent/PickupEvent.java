@@ -42,8 +42,6 @@ public class PickupEvent extends Event {
             this.queue.insert(paymentEvent);
         } else {
             // Vi måste stå i kö >:(
-            // Kom ihåg när vi började köa
-            this.customer.startKöTid = this.time;
             this.state.getKassakö().add(this.customer);
             this.state.increaseAntalKunderKöat();
         }
