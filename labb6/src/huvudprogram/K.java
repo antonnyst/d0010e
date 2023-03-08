@@ -19,7 +19,7 @@ public class K {
     //*/
     
     // Ex 2: 
-    /*
+    ///*
 	  public static final int M = 7;
 	  public static final double L = 2;
 
@@ -94,7 +94,7 @@ public class K {
     public static final double END_TIME = 20.0d;
     public static final double STOP_TIME = 999.0d;
     // Ex 7*/
-    ///*
+    /*
     public static final int M = 1400;
     public static final double L = 2000;
 

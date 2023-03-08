@@ -103,7 +103,7 @@ public class SnabbköpView extends View {
                 state.getAntalKassor(),
                 state.getTidLedigaKassor(),
                 state.getTidLedigaKassor()/state.getAntalKassor(),
-                ((state.getTidLedigaKassor()/state.getAntalKassor()) / state.getCloseTime())*100,
+                ((state.getTidLedigaKassor()/state.getAntalKassor()) / state.getLastPaymentTime())*100,
                 state.getAntalKunderKöat(),
                 state.getTidKunderKöat(),
                 state.getTidKunderKöat()/state.getAntalKunderKöat()

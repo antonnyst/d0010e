@@ -5,6 +5,7 @@ import allmänt.Event;
 import allmänt.State;
 import allmänt.StopEvent;
 import snabbköp.snabbköpsEvent.ArrivalEvent;
+import snabbköp.snabbköpsEvent.PaymentEvent;
 
 public class SnabbköpState extends State {
     private int antalKunder, maxAntalKunder, antalKunderHandlat, antalKunderKöat, antalKunderMissat, antalKassor, ledigaKassor;
@@ -17,6 +18,7 @@ public class SnabbköpState extends State {
     private CustomerFactory customerFactory;
     private int f;
     private double closeTime;
+    private double lastPaymentTime;
 
     public SnabbköpState(int maxKunder, int antalKassor, double lambda, double kmin, double kmax, double pmin, double pmax, int f)  {
         this.maxAntalKunder = maxKunder;
@@ -143,6 +145,11 @@ public class SnabbköpState extends State {
     @Override
     public void notify(Event source) {
 
+        // Håll koll på sista paymentEvent tiden för views beräkning
+        if (source instanceof PaymentEvent) {
+            this.lastPaymentTime = source.getTime();
+        }
+
         // Kör ej om stopEvent ELLER om arrivalevent efter stängning
         if (!(source instanceof ArrivalEvent && !this.shopOpen) && !(source instanceof StopEvent)) {
             // Beräkna tid
@@ -167,4 +174,7 @@ public class SnabbköpState extends State {
         return this.closeTime;
     }
     
+    public double getLastPaymentTime() {
+        return this.lastPaymentTime;
+    }
 }
