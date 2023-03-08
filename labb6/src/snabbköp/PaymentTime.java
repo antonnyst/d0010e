@@ -7,7 +7,9 @@
 package snabbköp;
 
 import java.util.Random;
-
+/**
+* Fabrik för att räkna ut beräknad tid för ett PaymentEvent
+*/
 public class PaymentTime {
     private Random random;
     private double min;
