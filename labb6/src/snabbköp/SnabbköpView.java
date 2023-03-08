@@ -12,11 +12,18 @@ import allmänt.Event;
 import allmänt.StartEvent;
 import allmänt.StopEvent;
 import allmänt.View;
-
+/**
+* SnabbköpView implementerar den allmäna vyn och gör fina utskrifter när event händer.
+*/
 public class SnabbköpView extends View {
     
     SnabbköpState state;
 
+    /**
+    * Konstruktor för SnabbköpView. 
+    * Skriver ut initiell info om simuleringen.
+    * @param state SnabbköpState som observeras
+    */
     public SnabbköpView(SnabbköpState state) {
         super(state);
         this.state = state;
@@ -24,6 +31,9 @@ public class SnabbköpView extends View {
         startPrint();
     }
 
+    /**
+    * Update-metod som anropas varje gång ett event sker och skriver ut raden för detta.
+    */
     @Override
     public void update(Observable arg0, Object arg1) {
         // TODO gör en utskrift    
@@ -35,7 +45,7 @@ public class SnabbköpView extends View {
             endPrint();
         }
     }
-
+    
     void startPrint() {
         System.out.print(String.format(
             """

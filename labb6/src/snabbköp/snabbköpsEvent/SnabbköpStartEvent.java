@@ -17,11 +17,20 @@ public class SnabbköpStartEvent extends StartEvent {
     
     private SnabbköpState state;
 
+    /**
+    * Konstruktor för SnabbköpStartEvent.
+    * @param state State för simuleringen
+    * @param queue EventQueuen för simuleringen
+    */
     public SnabbköpStartEvent(SnabbköpState state, EventQueue queue) {
         super(state, queue);
         this.state = state;   
     }
 
+    /**
+    * Kör eventet.
+    * Skapar det första ArrivalEventet.
+    */
     @Override
     public void runEvent() {
         super.runEvent();

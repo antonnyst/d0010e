@@ -16,16 +16,27 @@ import snabbköp.CustomerFactory.Customer;
 * Skapar ytterligare ArrivalEvents samt PickupEvents ifall det finns plats i butiken.
 */
 public class ArrivalEvent extends Event {
-
     private Customer customer;
     private SnabbköpState state;
-
+    
+    /**
+    * Konstruktor för ArrivalEvent.
+    * @param state State för simuleringen
+    * @param queue EventQueuen för simuleringen
+    * @param time Tiden som eventet ska ske
+    * @param customer Kunden som det gäller
+    */
     public ArrivalEvent(SnabbköpState state, EventQueue queue, double time, Customer customer) {
         super(state, queue, time);
         this.customer = customer;
         this.state = state;   
     }
 
+    /**
+    * Kör eventet.
+    * Skapar ytterligare ArrivalEvents för näst kund.
+    * Skapar även PickupEvent ifall det finns plats i butiken.
+    */
     @Override
     public void runEvent() {
         super.runEvent();

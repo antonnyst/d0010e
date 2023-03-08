@@ -22,13 +22,24 @@ public class PaymentEvent extends Event {
 
     private Customer customer;
     private SnabbköpState state;
-
+    
+    /**
+    * Konstruktor för PaymentEvent.
+    * @param state State för simuleringen
+    * @param queue EventQueuen för simuleringen
+    * @param time Tiden som eventet ska ske
+    * @param customer Kunden som det gäller
+    */
     public PaymentEvent(SnabbköpState state, EventQueue queue, double time, Customer customer) {
         super(state, queue, time);
         this.customer = customer;
         this.state = state;
     }
 
+    /**
+    * Kör eventet.
+    * Skapar PaymentEvent om det finns fler kunder i kön
+    */
     @Override
     public void runEvent() {
         super.runEvent();
