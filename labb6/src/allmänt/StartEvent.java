@@ -3,7 +3,8 @@
  * @author Nyström Anton
  * @author Nikolaos
  * @author Delfino Clara 
- */package allmänt;
+ */
+package allmänt;
 
 public class StartEvent extends Event {
     public StartEvent(State state, EventQueue queue) {

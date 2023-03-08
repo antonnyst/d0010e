@@ -3,7 +3,8 @@
  * @author Nyström Anton
  * @author Nikolaos
  * @author Delfino Clara 
- */package allmänt;
+ */
+package allmänt;
 
 public class StopEvent extends Event {
     public StopEvent(State state, EventQueue queue, double time) {
