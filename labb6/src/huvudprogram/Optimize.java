@@ -1,5 +1,9 @@
-/** Ovin Malcolm, Nyström Anton, Gista Nikolaos, Souza Delfino Clara */
-package huvudprogram;
+/** 
+ * @author Ovin Malcolm
+ * @author Nyström Anton
+ * @author Nikolaos
+ * @author Delfino Clara 
+ */package huvudprogram;
 
 import allmänt.EventQueue;
 import allmänt.Simulator;

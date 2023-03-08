@@ -1,4 +1,9 @@
-/** Ovin Malcolm, Nyström Anton, Gista Nikolaos, Souza Delfino Clara */
+/** 
+ * @author Ovin Malcolm
+ * @author Nyström Anton
+ * @author Nikolaos
+ * @author Delfino Clara 
+ */
 package snabbköp;
 
 import java.util.Random;

@@ -1,4 +1,4 @@
-/** Ovin Malcolm, Nyström Anton, Gista Nikolaos, Souza Delfino Clara */
+
 package huvudprogram;
 public class K {
 
