@@ -22,12 +22,23 @@ public class PickupEvent extends Event {
     private Customer customer;
     private SnabbköpState state;
 
+    /**
+     * kallar överklassen, och sparar parametrarna
+     * @param tillstånd
+     * @param lista med event
+     * @param tiden
+     * @param kund
+     */
     public PickupEvent(SnabbköpState state, EventQueue queue, double time, Customer customer) {
         super(state, queue, time);
         this.customer = customer;
         this.state = state;   
     }
 
+    /**
+     * om det finns lediga kassor läggs ett payment event till i listan
+     * om det inte finns lediga kassor läggs kunden till i en kö
+     */
     @Override
     public void runEvent() {
         super.runEvent();

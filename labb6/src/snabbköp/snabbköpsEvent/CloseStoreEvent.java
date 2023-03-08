@@ -17,12 +17,20 @@ import snabbköp.SnabbköpState;
 public class CloseStoreEvent extends Event {
     SnabbköpState state;
 
-    // skapar en CloseStoreEvent med överklassenskonstruktor
+    /**
+     * skapar en CloseStoreEvent med överklassenskonstruktor
+     * @param tillstånd
+     * @param lista med event
+     * @param tiden
+     */
     public CloseStoreEvent(SnabbköpState state, EventQueue queue, double time) {
         super(state, queue, time);
         this.state = state;
     }
 
+    /**
+     * kallar överklassen och sätter shopOpen parametern till false
+     */
     @Override
     public void runEvent() {
         super.runEvent();
