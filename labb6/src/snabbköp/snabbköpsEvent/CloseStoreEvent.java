@@ -5,9 +5,15 @@ import allmänt.Event;
 import allmänt.EventQueue;
 import snabbköp.SnabbköpState;
 
+/**
+* CloseStoreEvent stänger butiken genom att använda setter metoden i SnabbköpsState.
+*/
 public class CloseStoreEvent extends Event {
+    SnabbköpState state;
+
     public CloseStoreEvent(SnabbköpState state, EventQueue queue, double time) {
         super(state, queue, time);
+        this.state = state;
     }
 
     @Override
@@ -15,7 +21,7 @@ public class CloseStoreEvent extends Event {
         super.runEvent();
 
         // Sätt shopOpen till false
-        ((SnabbköpState)this.state).setShopStatus(false);
+        this.state.setShopStatus(false);
     }
 
     @Override

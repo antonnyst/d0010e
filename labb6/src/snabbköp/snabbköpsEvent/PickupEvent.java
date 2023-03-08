@@ -6,6 +6,12 @@ import allmänt.EventQueue;
 import snabbköp.SnabbköpState;
 import snabbköp.CustomerFactory.Customer;
 
+/**
+* Eventen för när en kund har plockat klart och går mot kassorna.
+* Kollar om det finns lediga kassor och i så fall skapar ett PaymentEvent för 
+* när betalningen är klar.
+* Annars ställs kunden i kassakön.
+*/
 public class PickupEvent extends Event {
     
     private Customer customer;

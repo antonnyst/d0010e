@@ -5,6 +5,9 @@ import allmänt.EventQueue;
 import allmänt.StartEvent;
 import snabbköp.SnabbköpState;
 
+/**
+* Startar snabbköpssimuleringen genom att skapa det första ArrivalEventet.
+*/
 public class SnabbköpStartEvent extends StartEvent {
     
     private SnabbköpState state;

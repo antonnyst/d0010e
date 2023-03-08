@@ -6,6 +6,10 @@ import allmänt.EventQueue;
 import snabbköp.SnabbköpState;
 import snabbköp.CustomerFactory.Customer;
 
+/**
+* Eventet när en kund tänkes anlända till butiken.
+* Skapar ytterligare ArrivalEvents samt PickupEvents ifall det finns plats i butiken.
+*/
 public class ArrivalEvent extends Event {
 
     private Customer customer;
