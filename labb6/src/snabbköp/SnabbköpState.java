@@ -12,8 +12,13 @@ import allmänt.StopEvent;
 import snabbköp.snabbköpsEvent.ArrivalEvent;
 import snabbköp.snabbköpsEvent.PaymentEvent;
 
+/**
+ * Den skapar en specifik tillstånd till Snabbköpsbutik.
+ */
+
 public class SnabbköpState extends State {
-    private int antalKunder, maxAntalKunder, antalKunderHandlat, antalKunderKöat, antalKunderMissat, antalKassor, ledigaKassor;
+    private int antalKunder, maxAntalKunder, antalKunderHandlat, antalKunderKöat, antalKunderMissat, antalKassor,
+            ledigaKassor;
     private boolean shopOpen = true;
     private double tidLedigaKassor, tidKunderKöat;
     private FIFO kassaKö;
@@ -25,7 +30,8 @@ public class SnabbköpState extends State {
     private double closeTime;
     private double lastPaymentTime;
 
-    public SnabbköpState(int maxKunder, int antalKassor, double lambda, double kmin, double kmax, double pmin, double pmax, int f)  {
+    public SnabbköpState(int maxKunder, int antalKassor, double lambda, double kmin, double kmax, double pmin,
+            double pmax, int f) {
         this.maxAntalKunder = maxKunder;
         this.antalKassor = antalKassor;
         this.ledigaKassor = antalKassor;
@@ -36,11 +42,12 @@ public class SnabbköpState extends State {
         this.customerFactory = new CustomerFactory();
         this.f = f;
     }
-    
+    // alla get metoder returnerar sina respektiva privata tillståndvariabler
+
     public int getMaxAntalKunder() {
         return this.maxAntalKunder;
     }
-    
+
     public int getAntalKassor() {
         return this.antalKassor;
     }
@@ -49,6 +56,7 @@ public class SnabbköpState extends State {
         return this.ledigaKassor;
     }
 
+    // alla increase metoder ökar variablerna
     public void increaseLedigaKassor() {
         this.ledigaKassor++;
     }
@@ -57,10 +65,11 @@ public class SnabbköpState extends State {
         this.ledigaKassor--;
     }
 
-    public int getAntalKunder()  {
+    public int getAntalKunder() {
         return this.antalKunder;
     }
 
+    // kollar om det finns plats i butiken och om det finns ökar antaletkunder
     public void increaseAntalKunder() throws RuntimeException {
         if (antalKunder + 1 > maxAntalKunder) {
             throw new RuntimeException("Too many customers in the store.");
@@ -68,31 +77,31 @@ public class SnabbköpState extends State {
         this.antalKunder++;
     }
 
-    public void decreaseAntalKunder()  {
+    public void decreaseAntalKunder() {
         this.antalKunder--;
     }
-    
+
     public int getAntalKunderHandlat() {
         return this.antalKunderHandlat;
     }
 
-    public void increaseAntalKunderHandlat()  {
+    public void increaseAntalKunderHandlat() {
         this.antalKunderHandlat++;
     }
 
-    public int getAntalKunderKöat()  {
+    public int getAntalKunderKöat() {
         return this.antalKunderKöat;
     }
 
-    public void increaseAntalKunderKöat()  {
+    public void increaseAntalKunderKöat() {
         this.antalKunderKöat++;
     }
 
-    public int getAntalKunderMissat()  {
+    public int getAntalKunderMissat() {
         return this.antalKunderMissat;
     }
 
-    public void increaseKunderMissat()  {
+    public void increaseKunderMissat() {
         this.antalKunderMissat++;
     }
 
@@ -100,11 +109,12 @@ public class SnabbköpState extends State {
         return this.tidKunderKöat;
     }
 
-    public void increaseTidKunderKöat(double tid)  {
+    
+    public void increaseTidKunderKöat(double tid) {
         this.tidKunderKöat += tid;
     }
 
-    public double getTidLedigaKassor()  {
+    public double getTidLedigaKassor() {
         return this.tidLedigaKassor;
     }
 
@@ -115,7 +125,7 @@ public class SnabbköpState extends State {
     public boolean getShopOpen() {
         return this.shopOpen;
     }
-    
+
     public void setShopStatus(boolean status) {
         this.shopOpen = status;
         if (!status) {
@@ -139,7 +149,7 @@ public class SnabbköpState extends State {
         return this.customerFactory;
     }
 
-    public FIFO getKassakö()  {
+    public FIFO getKassakö() {
         return this.kassaKö;
     }
 
@@ -169,8 +179,7 @@ public class SnabbköpState extends State {
             this.increaseTidKunderKöat(köTid);
             this.increaseTidLedigaKassor(ledigTid);
         }
-        
-                
+
         // Allmäna notify för att få view att skriva ut
         super.notify(source);
     }
@@ -178,7 +187,7 @@ public class SnabbköpState extends State {
     public double getCloseTime() {
         return this.closeTime;
     }
-    
+
     public double getLastPaymentTime() {
         return this.lastPaymentTime;
     }
