@@ -38,15 +38,16 @@ public class PaymentEvent extends Event {
         this.state.decreaseAntalKunder();
         this.state.increaseAntalKunderHandlat();
 
-        // kolla om det finns flera kunder i kassakö, och tar den flesta, och sen skapa
-        // den en ny paymentEvent till kunden
+        // kolla om det finns flera kunder i kassakö, och det finns tar den nästa
+        // kunden, och sen skapa
+        // en ny paymentEvent till kunden
         if (this.state.getKassakö().hasNext()) {
             Customer c = this.state.getKassakö().next();
             double paymentTime = this.state.getPaymentTime().finishTime(this.time);
             PaymentEvent paymentEvent = new PaymentEvent(state, queue, paymentTime, c);
             this.queue.insert(paymentEvent);
         }
-        // om det inte kunder finns ökas antalet ledigaKassor
+        // om det inte finns flera kunder ökas antalet ledigaKassor
         else {
             this.state.increaseLedigaKassor();
         }
