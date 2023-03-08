@@ -1,5 +1,9 @@
-/** Ovin Malcolm, Nyström Anton, Gista Nikolaos, Souza Delfino Clara */
-package allmänt;
+/** 
+ * @author Ovin Malcolm
+ * @author Nyström Anton
+ * @author Nikolaos
+ * @author Delfino Clara 
+ */package allmänt;
 
 public class StopEvent extends Event {
     public StopEvent(State state, EventQueue queue, double time) {

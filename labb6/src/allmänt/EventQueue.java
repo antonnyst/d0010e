@@ -1,5 +1,9 @@
-/** Ovin Malcolm, Nyström Anton, Gista Nikolaos, Souza Delfino Clara */
-package allmänt;
+/** 
+ * @author Ovin Malcolm
+ * @author Nyström Anton
+ * @author Nikolaos
+ * @author Delfino Clara 
+ */package allmänt;
 
 import java.util.ArrayList;
 
