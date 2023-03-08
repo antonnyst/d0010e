@@ -8,11 +8,15 @@ package snabbköp.snabbköpsEvent;
 
 import allmänt.Event;
 import allmänt.EventQueue;
-import allmänt.State;
-import snabbköp.PaymentTime;
 import snabbköp.SnabbköpState;
 import snabbköp.CustomerFactory.Customer;
 
+/**
+* Eventen för när en kund har betalat klart. 
+* Minskar antalet kunder i butiken samt antalet som har handlat.
+* Kollar dessutom om det finns kunder i kassakön och i så fall skapar ett nytt PaymentEvent
+* för nästa kund som betalar.
+*/
 public class PaymentEvent extends Event {
 
     private Customer customer;
