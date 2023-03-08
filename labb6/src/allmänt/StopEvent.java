@@ -20,12 +20,16 @@ public class StopEvent extends Event {
         super(state, queue, time);
     }
 
+    /**
+     * kallar överklassen
+     * ändrar tillståndet så att det är den sista eventet
+     */
     @Override
     public void runEvent() {
         super.runEvent();
         this.state.stop = true;
     }
-
+    
     @Override
     public String toString() {
         return "Stop"; 
