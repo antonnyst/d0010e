@@ -3,7 +3,8 @@
  * @author Nyström Anton
  * @author Nikolaos
  * @author Delfino Clara 
- */package huvudprogram;
+ */
+package huvudprogram;
 
 import allmänt.EventQueue;
 import allmänt.Simulator;
