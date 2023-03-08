@@ -11,11 +11,13 @@ import allmänt.EventQueue;
 import snabbköp.SnabbköpState;
 
 /**
-* CloseStoreEvent stänger butiken genom att använda setter metoden i SnabbköpsState.
-*/
+ * CloseStoreEvent stänger butiken genom att använda setter metoden i
+ * SnabbköpsState.
+ */
 public class CloseStoreEvent extends Event {
     SnabbköpState state;
 
+    // skapar en CloseStoreEvent med överklassenskonstruktor
     public CloseStoreEvent(SnabbköpState state, EventQueue queue, double time) {
         super(state, queue, time);
         this.state = state;
@@ -31,6 +33,6 @@ public class CloseStoreEvent extends Event {
 
     @Override
     public String toString() {
-        return "Stänger    ---"; 
+        return "Stänger    ---";
     }
 }
